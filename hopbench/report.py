@@ -86,8 +86,9 @@ def radar_svg(path, cards, names, cols=3, cell=300, title="HopBench resilience r
             out.append(f'<line x1="{cx:.1f}" y1="{cy:.1f}" x2="{x:.1f}" y2="{y:.1f}" stroke="#d0d4da" stroke-width="0.7"/>')
             lx, ly = cx + (R + 16) * math.sin(2 * math.pi * i / n), cy - (R + 16) * math.cos(2 * math.pi * i / n)
             anchor = "middle" if abs(math.sin(2 * math.pi * i / n)) < 0.3 else ("start" if math.sin(2 * math.pi * i / n) > 0 else "end")
+            two_lines = 5 if "\n" in SHORT[a] else 0   # hoisted: a backslash inside an f-string expression needs Python 3.12
             for j, line in enumerate(SHORT[a].split("\n")):
-                out.append(f'<text x="{lx:.1f}" y="{ly + 3 + 10 * j - (5 if "\n" in SHORT[a] else 0):.1f}" text-anchor="{anchor}" font-size="9" fill="#444">{line}</text>')
+                out.append(f'<text x="{lx:.1f}" y="{ly + 3 + 10 * j - two_lines:.1f}" text-anchor="{anchor}" font-size="9" fill="#444">{line}</text>')
         vals = [max(0.0, min(1.0, c["axes"][a])) for a in AXIS_ORDER]
         pts = " ".join(f"{cx + v * R * math.sin(2 * math.pi * i / n):.1f},{cy - v * R * math.cos(2 * math.pi * i / n):.1f}" for i, v in enumerate(vals))
         col = "#1b7f3b" if c["score"] >= 70 else ("#c77700" if c["score"] >= 40 else "#c0262d")

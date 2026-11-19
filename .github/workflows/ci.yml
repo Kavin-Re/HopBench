@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+      - run: python -m pip install -r requirements-dev.txt
+      - name: Unit tests (browser test skips itself without Playwright)
+        run: python -m pytest -q
+      - name: Smoke-run the CLI on the example schedules
+        run: python -m hopbench score examples.custom_schedule:HashOfCounter examples.custom_schedule:WeakCounter --quick --out "$RUNNER_TEMP/hb"
+
+  browser-game:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install -r requirements-dev.txt playwright
+      - run: python -m playwright install --with-deps chromium
+      - name: Break-the-Hop page vs Python reference
+        run: python -m pytest -q tests/test_break_the_hop_playwright.py

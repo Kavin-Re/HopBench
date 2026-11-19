@@ -1,4 +1,4 @@
-"""Small numpy-only statistics toolbox (the laptop VM has no scipy).
+"""Small numpy-only statistics toolbox (kept SciPy-free so the only hard dependency is NumPy).
 
 * special functions: regularized incomplete gamma, normal tail
 * bootstrap confidence intervals over trials

@@ -46,3 +46,11 @@ dist/
 *.wlf
 *.fsdb
 *.vpd
+
+# --- HopBench ---
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+# output of `python -m hopbench score ...` (the committed reference run is results/{leaderboard,detail}.csv etc.)
+results/custom_*
+test-results/

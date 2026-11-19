@@ -1,0 +1,4 @@
+-r requirements.txt
+pytest>=8
+# Optional: tests/test_break_the_hop_playwright.py skips itself when Playwright or Chromium is missing.
+# playwright>=1.44   (then: python -m playwright install chromium)
