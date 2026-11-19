@@ -1,0 +1,10 @@
+rank,schedule,kind,score,verdict,weighted_mean_pct,gate_min_predictor_axis_pct,axis_state_recovery_pct,axis_ngram_pct,axis_linear_complexity_pct,axis_frequency_bias_pct,axis_reactive_pct,axis_follower_pct,axis_sweep_random_band_pct,axis_randomness_pct,shannon_bits_per_hop,min_entropy_bits_per_hop
+6,LFSR-16,builtin,20.4,broken,71.9,10.5,10.5,72.9,100.0,100.0,99.7,99.5,99.7,70.0,3.699,3.589
+3,LCG-24,builtin,22.9,broken,81.9,9.9,9.9,100.0,100.0,100.0,99.7,99.5,99.7,100.0,3.699,3.602
+4,Xorshift-16,builtin,21.6,broken,81.3,8.2,8.2,99.1,100.0,100.0,99.7,99.6,99.7,99.4,3.699,3.599
+7,Counter-mod,builtin,16.8,broken,54.1,13.8,100.0,13.8,20.8,100.0,100.0,0.1,99.8,10.0,3.700,3.699
+5,Table-32,builtin,20.7,broken,59.0,18.7,100.0,18.7,25.5,87.4,98.2,95.1,99.0,2.5,3.390,2.661
+2,HMAC-SHA256,builtin,99.8,no weakness found by this suite,99.8,100.0,100.0,100.0,100.0,100.0,99.8,99.6,99.6,99.4,3.699,3.586
+1,SipHash-2-4,builtin,99.8,no weakness found by this suite,99.8,100.0,100.0,100.0,100.0,100.0,99.8,99.7,99.6,99.4,3.699,3.603
+,Control: constant,control,6.2,broken,30.9,0.0,100.0,0.0,13.0,0.0,0.1,0.1,95.8,0.0,0.000,0.000
+,Control: ideal-random,control,99.9,no weakness found by this suite,99.9,100.0,100.0,100.0,100.0,100.0,99.8,99.5,99.6,100.0,3.699,3.597

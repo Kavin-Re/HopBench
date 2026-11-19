@@ -1,0 +1,2722 @@
+{
+ "meta": {
+  "config": {
+   "M": 13,
+   "trials": 16,
+   "slots": 2000,
+   "warmup": 200,
+   "streak": 16,
+   "p_jam": 0.95,
+   "p_clean": 0.01,
+   "rand_len": 6000,
+   "seed0": 1000,
+   "attackers": [
+    "lfsr_breaker",
+    "lcg_recovery",
+    "xorshift_breaker",
+    "ngram",
+    "berlekamp_massey",
+    "frequency_bias",
+    "reactive_delay",
+    "sweep",
+    "random",
+    "partial_band",
+    "follower"
+   ]
+  },
+  "seconds": 62.53779101371765
+ },
+ "scorecards": {
+  "LFSR-16": {
+   "score": 20.414471172628183,
+   "weighted_mean": 0.7194447587514364,
+   "gate": 0.10469142912474205,
+   "gate_factor": 0.2837531432997937,
+   "axes": {
+    "state_recovery": 0.10469142912474205,
+    "ngram": 0.729443035734419,
+    "linear_complexity": 1.0,
+    "frequency_bias": 1.0,
+    "reactive": 0.9969907407407408,
+    "follower": 0.9954240543735224,
+    "sweep_random_band": 0.9965107450091936,
+    "randomness": 0.7
+   },
+   "attackers": {
+    "lfsr_breaker": {
+     "hit_mean": 1.0,
+     "hit_lo": 1.0,
+     "hit_hi": 1.0,
+     "chance": 0.07692307692307693,
+     "significant": true,
+     "advantage_bits": 3.700439718141092,
+     "kind": "predictor",
+     "tput_mean": 0.04892361111111111,
+     "tput_p10": 0.03972222222222222,
+     "tput_ci": [
+      0.04545138888888889,
+      0.05204947916666666
+     ],
+     "adv_score": 0.0,
+     "broken_fraction": 1.0,
+     "obs_break_median": 7.5,
+     "obs_break_min": 5,
+     "obs_break_max": 9,
+     "obs_score": 0.26172857281185513,
+     "resist": 0.10469142912474205
+    },
+    "lcg_recovery": {
+     "hit_mean": 0.07538194444444445,
+     "hit_lo": 0.07222222222222222,
+     "hit_hi": 0.07909722222222222,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9185763888888889,
+     "tput_p10": 0.9113888888888888,
+     "tput_ci": [
+      0.9149652777777777,
+      0.9218055555555555
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "xorshift_breaker": {
+     "hit_mean": 0.07784722222222223,
+     "hit_lo": 0.0739236111111111,
+     "hit_hi": 0.08236284722222222,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9165625,
+     "tput_p10": 0.903888888888889,
+     "tput_ci": [
+      0.9113880208333334,
+      0.920798611111111
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "ngram": {
+     "hit_mean": 0.24454861111111112,
+     "hit_lo": 0.2403472222222222,
+     "hit_hi": 0.24847309027777778,
+     "chance": 0.07692307692307693,
+     "significant": true,
+     "advantage_bits": 1.6686328943133932,
+     "kind": "predictor",
+     "tput_mean": 0.759826388888889,
+     "tput_p10": 0.7488888888888889,
+     "tput_ci": [
+      0.7552769097222222,
+      0.7648289930555555
+     ],
+     "adv_score": 0.5490717262240317,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 0.729443035734419
+    },
+    "berlekamp_massey": {
+     "hit_mean": 0.07642361111111111,
+     "hit_lo": 0.0734375,
+     "hit_hi": 0.07951475694444443,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9174305555555555,
+     "tput_p10": 0.9086111111111111,
+     "tput_ci": [
+      0.9138541666666666,
+      0.9208342013888889
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "frequency_bias": {
+     "hit_mean": 0.07434027777777778,
+     "hit_lo": 0.07100694444444444,
+     "hit_hi": 0.07767447916666666,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9197569444444444,
+     "tput_p10": 0.9099999999999999,
+     "tput_ci": [
+      0.9160407986111111,
+      0.9235425347222223
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "reactive_delay": {
+     "hit_mean": 0.07815972222222223,
+     "hit_lo": 0.07486111111111111,
+     "hit_hi": 0.08135416666666666,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9155555555555556,
+     "tput_p10": 0.9083333333333334,
+     "tput_ci": [
+      0.9126380208333332,
+      0.9185416666666666
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9924768518518519,
+     "resist": 0.9969907407407408
+    },
+    "sweep": {
+     "hit_mean": 0.07666666666666666,
+     "hit_lo": 0.07288194444444444,
+     "hit_hi": 0.08031336805555556,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9175347222222223,
+     "tput_p10": 0.9094444444444445,
+     "tput_ci": [
+      0.913888888888889,
+      0.9216675347222222
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.993537295606777,
+     "resist": 0.9974149182427108
+    },
+    "random": {
+     "hit_mean": 0.07642361111111111,
+     "hit_lo": 0.0734375,
+     "hit_hi": 0.07951475694444443,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9174305555555555,
+     "tput_p10": 0.9086111111111111,
+     "tput_ci": [
+      0.9138541666666666,
+      0.9208342013888889
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9930678684003152,
+     "resist": 0.9972271473601261
+    },
+    "partial_band": {
+     "hit_mean": 0.3075347222222222,
+     "hit_lo": 0.30190798611111114,
+     "hit_hi": 0.3133342013888889,
+     "chance": 0.3076923076923077,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.7003472222222222,
+     "tput_p10": 0.6886111111111111,
+     "tput_ci": [
+      0.694236111111111,
+      0.7057300347222223
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.7007692307692307,
+     "tput_score": 0.9872254235618598,
+     "resist": 0.994890169424744
+    },
+    "follower": {
+     "hit_mean": 0.23052083333333334,
+     "hit_lo": 0.22583246527777778,
+     "hit_hi": 0.23479253472222222,
+     "chance": 0.23076923076923078,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.7723958333333334,
+     "tput_p10": 0.7605555555555555,
+     "tput_ci": [
+      0.7680538194444444,
+      0.7771883680555556
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.7730769230769231,
+     "tput_score": 0.9885601359338061,
+     "resist": 0.9954240543735224
+    }
+   },
+   "randomness_tests": {
+    "chi2_uniform": {
+     "fail_fraction": 0.0,
+     "min_p": 0.25446445775104065,
+     "median_p": 0.5538638352099778
+    },
+    "serial_corr_lag1": {
+     "fail_fraction": 1.0,
+     "min_p": 1.8952567293664e-91,
+     "median_p": 2.620510694818356e-76
+    },
+    "runs": {
+     "fail_fraction": 0.0,
+     "min_p": 0.008130910242985796,
+     "median_p": 0.4210963367781918
+    },
+    "pair_chi2": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "autocorr_max64": {
+     "fail_fraction": 1.0,
+     "min_p": 1.212964306794496e-89,
+     "median_p": 1.6771268446837479e-74
+    },
+    "coincidence_scan": {
+     "fail_fraction": 0.0,
+     "min_p": 0.0049857103509345895,
+     "median_p": 0.06916488488051531
+    },
+    "lc_plane0": {
+     "fail_fraction": 0.0,
+     "min_p": 0.031032519500148736,
+     "median_p": 0.8292484591829845
+    },
+    "lc_plane1": {
+     "fail_fraction": 0.0,
+     "min_p": 0.031032519500148736,
+     "median_p": 0.45035134358484463
+    },
+    "lc_plane2": {
+     "fail_fraction": 0.0,
+     "min_p": 0.0017650959193793502,
+     "median_p": 0.45035134358484463
+    },
+    "lc_plane3": {
+     "fail_fraction": 0.0,
+     "min_p": 0.08446903225324304,
+     "median_p": 0.8292484591829845
+    }
+   },
+   "shannon_bits": 3.699280405175233,
+   "min_entropy_bits": 3.5890509371144894
+  },
+  "LCG-24": {
+   "score": 22.850244902650147,
+   "weighted_mean": 0.8189177383018584,
+   "gate": 0.09878724433960479,
+   "gate_factor": 0.27902979547168383,
+   "axes": {
+    "state_recovery": 0.09878724433960479,
+    "ngram": 1.0,
+    "linear_complexity": 1.0,
+    "frequency_bias": 1.0,
+    "reactive": 0.9973884456264775,
+    "follower": 0.9953287529550827,
+    "sweep_random_band": 0.9969620107696349,
+    "randomness": 1.0
+   },
+   "attackers": {
+    "lfsr_breaker": {
+     "hit_mean": 0.07506944444444444,
+     "hit_lo": 0.07194444444444445,
+     "hit_hi": 0.07798697916666666,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9193055555555556,
+     "tput_p10": 0.9108333333333334,
+     "tput_ci": [
+      0.9159713541666666,
+      0.9229861111111111
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "lcg_recovery": {
+     "hit_mean": 1.0,
+     "hit_lo": 1.0,
+     "hit_hi": 1.0,
+     "chance": 0.07692307692307693,
+     "significant": true,
+     "advantage_bits": 3.700439718141092,
+     "kind": "predictor",
+     "tput_mean": 0.04892361111111111,
+     "tput_p10": 0.03972222222222222,
+     "tput_ci": [
+      0.04545138888888889,
+      0.05204947916666666
+     ],
+     "adv_score": 0.0,
+     "broken_fraction": 1.0,
+     "obs_break_median": 6.5,
+     "obs_break_min": 6,
+     "obs_break_max": 8,
+     "obs_score": 0.24696811084901196,
+     "resist": 0.09878724433960479
+    },
+    "xorshift_breaker": {
+     "hit_mean": 0.07506944444444444,
+     "hit_lo": 0.07243055555555555,
+     "hit_hi": 0.07795138888888889,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9189930555555555,
+     "tput_p10": 0.9099999999999999,
+     "tput_ci": [
+      0.9160407986111111,
+      0.9219444444444445
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "ngram": {
+     "hit_mean": 0.0757638888888889,
+     "hit_lo": 0.07378472222222222,
+     "hit_hi": 0.07791666666666666,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9181944444444444,
+     "tput_p10": 0.9113888888888889,
+     "tput_ci": [
+      0.9158671875000001,
+      0.9205911458333333
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "berlekamp_massey": {
+     "hit_mean": 0.0778125,
+     "hit_lo": 0.07454861111111111,
+     "hit_hi": 0.08073003472222222,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.916076388888889,
+     "tput_p10": 0.9088888888888889,
+     "tput_ci": [
+      0.9132638888888889,
+      0.9191319444444443
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "frequency_bias": {
+     "hit_mean": 0.07961805555555554,
+     "hit_lo": 0.07607638888888889,
+     "hit_hi": 0.08284722222222222,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.914236111111111,
+     "tput_p10": 0.9080555555555556,
+     "tput_ci": [
+      0.9110763888888889,
+      0.9178472222222223
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "reactive_delay": {
+     "hit_mean": 0.07697916666666665,
+     "hit_lo": 0.07447829861111112,
+     "hit_hi": 0.07944444444444444,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9165625,
+     "tput_p10": 0.9094444444444445,
+     "tput_ci": [
+      0.9138888888888889,
+      0.9194453125000001
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9934711140661938,
+     "resist": 0.9973884456264775
+    },
+    "sweep": {
+     "hit_mean": 0.07774305555555555,
+     "hit_lo": 0.07576388888888888,
+     "hit_hi": 0.0797578125,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9169444444444445,
+     "tput_p10": 0.9111111111111112,
+     "tput_ci": [
+      0.9146171875,
+      0.9193758680555556
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9947947448778566,
+     "resist": 0.9979178979511426
+    },
+    "random": {
+     "hit_mean": 0.0778125,
+     "hit_lo": 0.07454861111111111,
+     "hit_hi": 0.08073003472222222,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.916076388888889,
+     "tput_p10": 0.9088888888888889,
+     "tput_ci": [
+      0.9132638888888889,
+      0.9191319444444443
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9928739410953507,
+     "resist": 0.9971495764381403
+    },
+    "partial_band": {
+     "hit_mean": 0.30649305555555556,
+     "hit_lo": 0.30368055555555556,
+     "hit_hi": 0.30951388888888887,
+     "chance": 0.3076923076923077,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.7014583333333333,
+     "tput_p10": 0.69,
+     "tput_ci": [
+      0.6976371527777777,
+      0.7051736111111111
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.7007692307692307,
+     "tput_score": 0.9895463947990544,
+     "resist": 0.9958185579196217
+    },
+    "follower": {
+     "hit_mean": 0.2292013888888889,
+     "hit_lo": 0.22420052083333336,
+     "hit_hi": 0.2341328125,
+     "chance": 0.23076923076923078,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.7734027777777779,
+     "tput_p10": 0.7602777777777778,
+     "tput_ci": [
+      0.7686449652777777,
+      0.7783350694444444
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.7730769230769231,
+     "tput_score": 0.9883218823877068,
+     "resist": 0.9953287529550827
+    }
+   },
+   "randomness_tests": {
+    "chi2_uniform": {
+     "fail_fraction": 0.0,
+     "min_p": 0.07645195743116966,
+     "median_p": 0.5199710507733242
+    },
+    "serial_corr_lag1": {
+     "fail_fraction": 0.0,
+     "min_p": 0.018931111337901443,
+     "median_p": 0.4944433915619605
+    },
+    "runs": {
+     "fail_fraction": 0.0,
+     "min_p": 0.04253195980281567,
+     "median_p": 0.4278049800744773
+    },
+    "pair_chi2": {
+     "fail_fraction": 0.0,
+     "min_p": 0.029239413879451837,
+     "median_p": 0.5091968867081946
+    },
+    "autocorr_max64": {
+     "fail_fraction": 0.0,
+     "min_p": 0.005659578757151233,
+     "median_p": 0.9876245292549166
+    },
+    "coincidence_scan": {
+     "fail_fraction": 0.0,
+     "min_p": 0.03368714498634755,
+     "median_p": 0.6942585780795597
+    },
+    "lc_plane0": {
+     "fail_fraction": 0.0,
+     "min_p": 0.2355589199240989,
+     "median_p": 0.8292484591829845
+    },
+    "lc_plane1": {
+     "fail_fraction": 0.0,
+     "min_p": 0.08446903225324304,
+     "median_p": 0.45035134358484463
+    },
+    "lc_plane2": {
+     "fail_fraction": 0.0,
+     "min_p": 0.007021573953175698,
+     "median_p": 0.45035134358484463
+    },
+    "lc_plane3": {
+     "fail_fraction": 0.0,
+     "min_p": 0.08446903225324304,
+     "median_p": 0.45035134358484463
+    }
+   },
+   "shannon_bits": 3.6991072325322296,
+   "min_entropy_bits": 3.601562726596593
+  },
+  "Xorshift-16": {
+   "score": 21.616909925237085,
+   "weighted_mean": 0.8130053632121249,
+   "gate": 0.08236112120820227,
+   "gate_factor": 0.2658888969665618,
+   "axes": {
+    "state_recovery": 0.08236112120820227,
+    "ngram": 0.9909269340436637,
+    "linear_complexity": 1.0,
+    "frequency_bias": 1.0,
+    "reactive": 0.9970726211583925,
+    "follower": 0.9957993498817967,
+    "sweep_random_band": 0.996723346795377,
+    "randomness": 0.99375
+   },
+   "attackers": {
+    "lfsr_breaker": {
+     "hit_mean": 0.07621527777777778,
+     "hit_lo": 0.073125,
+     "hit_hi": 0.07944531249999999,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9173958333333334,
+     "tput_p10": 0.9063888888888889,
+     "tput_ci": [
+      0.9135069444444445,
+      0.9213541666666667
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "lcg_recovery": {
+     "hit_mean": 0.07746527777777777,
+     "hit_lo": 0.07461718750000002,
+     "hit_hi": 0.08024305555555555,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9161458333333333,
+     "tput_p10": 0.9099999999999999,
+     "tput_ci": [
+      0.913125,
+      0.9192708333333334
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "xorshift_breaker": {
+     "hit_mean": 1.0,
+     "hit_lo": 1.0,
+     "hit_hi": 1.0,
+     "chance": 0.07692307692307693,
+     "significant": true,
+     "advantage_bits": 3.700439718141092,
+     "kind": "predictor",
+     "tput_mean": 0.04892361111111111,
+     "tput_p10": 0.03972222222222222,
+     "tput_ci": [
+      0.04545138888888889,
+      0.05204947916666666
+     ],
+     "adv_score": 0.0,
+     "broken_fraction": 1.0,
+     "obs_break_median": 5.0,
+     "obs_break_min": 4,
+     "obs_break_max": 6,
+     "obs_score": 0.20590280302050565,
+     "resist": 0.08236112120820227
+    },
+    "ngram": {
+     "hit_mean": 0.07996527777777779,
+     "hit_lo": 0.0776388888888889,
+     "hit_hi": 0.08246527777777776,
+     "chance": 0.07692307692307693,
+     "significant": true,
+     "advantage_bits": 0.0559572227169008,
+     "kind": "predictor",
+     "tput_mean": 0.9139583333333333,
+     "tput_p10": 0.9072222222222222,
+     "tput_ci": [
+      0.9116319444444445,
+      0.9162847222222222
+     ],
+     "adv_score": 0.9848782234061062,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 0.9909269340436637
+    },
+    "berlekamp_massey": {
+     "hit_mean": 0.07552083333333334,
+     "hit_lo": 0.07263888888888889,
+     "hit_hi": 0.07836805555555557,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9177777777777778,
+     "tput_p10": 0.9105555555555556,
+     "tput_ci": [
+      0.9149305555555556,
+      0.9207638888888889
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "frequency_bias": {
+     "hit_mean": 0.07732638888888889,
+     "hit_lo": 0.0752421875,
+     "hit_hi": 0.07947916666666666,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9172916666666666,
+     "tput_p10": 0.9130555555555555,
+     "tput_ci": [
+      0.9154852430555556,
+      0.9191328125000001
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "reactive_delay": {
+     "hit_mean": 0.07614583333333333,
+     "hit_lo": 0.07371527777777778,
+     "hit_hi": 0.07881944444444444,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9175347222222222,
+     "tput_p10": 0.9077777777777778,
+     "tput_ci": [
+      0.914375,
+      0.9205217013888889
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9926815528959811,
+     "resist": 0.9970726211583925
+    },
+    "sweep": {
+     "hit_mean": 0.07576388888888888,
+     "hit_lo": 0.07197916666666666,
+     "hit_hi": 0.08003472222222222,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9173958333333334,
+     "tput_p10": 0.9072222222222223,
+     "tput_ci": [
+      0.9132291666666668,
+      0.9212847222222222
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9921074665090623,
+     "resist": 0.9968429866036249
+    },
+    "random": {
+     "hit_mean": 0.07552083333333334,
+     "hit_lo": 0.07263888888888889,
+     "hit_hi": 0.07836805555555557,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9177777777777778,
+     "tput_p10": 0.9105555555555556,
+     "tput_ci": [
+      0.9149305555555556,
+      0.9207638888888889
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9945715745665878,
+     "resist": 0.9978286298266351
+    },
+    "partial_band": {
+     "hit_mean": 0.3046875,
+     "hit_lo": 0.2992013888888889,
+     "hit_hi": 0.31000086805555555,
+     "chance": 0.3076923076923077,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.7030902777777779,
+     "tput_p10": 0.6894444444444444,
+     "tput_ci": [
+      0.6977430555555556,
+      0.7081953125
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.7007692307692307,
+     "tput_score": 0.9887460598896769,
+     "resist": 0.9954984239558707
+    },
+    "follower": {
+     "hit_mean": 0.22854166666666667,
+     "hit_lo": 0.22291666666666668,
+     "hit_hi": 0.23385503472222222,
+     "chance": 0.23076923076923078,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.7746180555555555,
+     "tput_p10": 0.7616666666666667,
+     "tput_ci": [
+      0.7692708333333333,
+      0.780173611111111
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.7730769230769231,
+     "tput_score": 0.9894983747044918,
+     "resist": 0.9957993498817967
+    }
+   },
+   "randomness_tests": {
+    "chi2_uniform": {
+     "fail_fraction": 0.0,
+     "min_p": 0.11691046736520494,
+     "median_p": 0.5988364025253844
+    },
+    "serial_corr_lag1": {
+     "fail_fraction": 0.0,
+     "min_p": 0.14550750900617926,
+     "median_p": 0.5121096293620363
+    },
+    "runs": {
+     "fail_fraction": 0.0,
+     "min_p": 0.05410197315250667,
+     "median_p": 0.4731802060941108
+    },
+    "pair_chi2": {
+     "fail_fraction": 0.0,
+     "min_p": 0.06959849810365229,
+     "median_p": 0.3733643754757138
+    },
+    "autocorr_max64": {
+     "fail_fraction": 0.0,
+     "min_p": 0.0068499487047081606,
+     "median_p": 0.7166999821521958
+    },
+    "coincidence_scan": {
+     "fail_fraction": 0.0,
+     "min_p": 0.034856947177688606,
+     "median_p": 0.5786031692452174
+    },
+    "lc_plane0": {
+     "fail_fraction": 0.0,
+     "min_p": 0.0017650959193793502,
+     "median_p": 0.45035134358484463
+    },
+    "lc_plane1": {
+     "fail_fraction": 0.0,
+     "min_p": 0.031032519500148736,
+     "median_p": 0.8292484591829845
+    },
+    "lc_plane2": {
+     "fail_fraction": 0.0625,
+     "min_p": 0.00024607147206300256,
+     "median_p": 0.6397999013839146
+    },
+    "lc_plane3": {
+     "fail_fraction": 0.0,
+     "min_p": 0.007021573953175698,
+     "median_p": 0.8292484591829845
+    }
+   },
+   "shannon_bits": 3.6992047458864743,
+   "min_entropy_bits": 3.598571519719048
+  },
+  "Counter-mod": {
+   "score": 16.821341880771804,
+   "weighted_mean": 0.5413752503651835,
+   "gate": 0.13839376821864785,
+   "gate_factor": 0.3107150145749183,
+   "axes": {
+    "state_recovery": 1.0,
+    "ngram": 0.13839376821864785,
+    "linear_complexity": 0.2077439013851545,
+    "frequency_bias": 1.0,
+    "reactive": 1.0,
+    "follower": 0.000624261229314417,
+    "sweep_random_band": 0.9979809670781892,
+    "randomness": 0.09999999999999998
+   },
+   "attackers": {
+    "lfsr_breaker": {
+     "hit_mean": 0.07895833333333332,
+     "hit_lo": 0.07628472222222223,
+     "hit_hi": 0.08152777777777778,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9153819444444444,
+     "tput_p10": 0.9061111111111111,
+     "tput_ci": [
+      0.9121171874999999,
+      0.91875
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "lcg_recovery": {
+     "hit_mean": 0.07503472222222221,
+     "hit_lo": 0.07187413194444445,
+     "hit_hi": 0.07836805555555557,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9191319444444445,
+     "tput_p10": 0.9094444444444445,
+     "tput_ci": [
+      0.9157977430555556,
+      0.9224652777777778
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "xorshift_breaker": {
+     "hit_mean": 0.07597222222222222,
+     "hit_lo": 0.07340277777777778,
+     "hit_hi": 0.07868055555555556,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9182986111111111,
+     "tput_p10": 0.9116666666666666,
+     "tput_ci": [
+      0.9159713541666666,
+      0.9205911458333333
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "ngram": {
+     "hit_mean": 1.0,
+     "hit_lo": 1.0,
+     "hit_hi": 1.0,
+     "chance": 0.07692307692307693,
+     "significant": true,
+     "advantage_bits": 3.700439718141092,
+     "kind": "predictor",
+     "tput_mean": 0.04892361111111111,
+     "tput_p10": 0.03972222222222222,
+     "tput_ci": [
+      0.04545138888888889,
+      0.05204947916666666
+     ],
+     "adv_score": 0.0,
+     "broken_fraction": 1.0,
+     "obs_break_median": 14.0,
+     "obs_break_min": 13,
+     "obs_break_max": 14,
+     "obs_score": 0.3459844205466196,
+     "resist": 0.13839376821864785
+    },
+    "berlekamp_massey": {
+     "hit_mean": 1.0,
+     "hit_lo": 1.0,
+     "hit_hi": 1.0,
+     "chance": 0.07692307692307693,
+     "significant": true,
+     "advantage_bits": 3.700439718141092,
+     "kind": "predictor",
+     "tput_mean": 0.04892361111111111,
+     "tput_p10": 0.03972222222222222,
+     "tput_ci": [
+      0.04545138888888889,
+      0.05204947916666666
+     ],
+     "adv_score": 0.0,
+     "broken_fraction": 1.0,
+     "obs_break_median": 52.0,
+     "obs_break_min": 51,
+     "obs_break_max": 52,
+     "obs_score": 0.5193597534628862,
+     "resist": 0.2077439013851545
+    },
+    "frequency_bias": {
+     "hit_mean": 0.005868055555555555,
+     "hit_lo": 0.005069444444444444,
+     "hit_hi": 0.006736111111111111,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9838541666666667,
+     "tput_p10": 0.9794444444444445,
+     "tput_ci": [
+      0.9822222222222222,
+      0.9855555555555556
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "reactive_delay": {
+     "hit_mean": 0.0,
+     "hit_lo": 0.0,
+     "hit_hi": 0.0,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9894444444444445,
+     "tput_p10": 0.9866666666666667,
+     "tput_ci": [
+      0.9881944444444444,
+      0.9908680555555556
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 1.0,
+     "resist": 1.0
+    },
+    "sweep": {
+     "hit_mean": 0.07222222222222222,
+     "hit_lo": 0.06249999999999999,
+     "hit_hi": 0.07711805555555556,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9211805555555556,
+     "tput_p10": 0.9144444444444444,
+     "tput_ci": [
+      0.9160416666666666,
+      0.9305555555555556
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9973588947990544,
+     "resist": 0.9989435579196217
+    },
+    "random": {
+     "hit_mean": 0.07777777777777778,
+     "hit_lo": 0.07472048611111111,
+     "hit_hi": 0.08072916666666666,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9167013888888889,
+     "tput_p10": 0.9102777777777777,
+     "tput_ci": [
+      0.9137838541666666,
+      0.919861111111111
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9938743597320725,
+     "resist": 0.997549743892829
+    },
+    "partial_band": {
+     "hit_mean": 0.3075347222222222,
+     "hit_lo": 0.30704861111111115,
+     "hit_hi": 0.30809027777777775,
+     "chance": 0.3076923076923077,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.6994097222222222,
+     "tput_p10": 0.695,
+     "tput_ci": [
+      0.6972907986111111,
+      0.7015625000000001
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.7007692307692307,
+     "tput_score": 0.9936239985552928,
+     "resist": 0.9974495994221171
+    },
+    "follower": {
+     "hit_mean": 1.0,
+     "hit_lo": 1.0,
+     "hit_hi": 1.0,
+     "chance": 0.23076923076923078,
+     "significant": true,
+     "advantage_bits": 2.1154772174199357,
+     "kind": "jammer",
+     "tput_mean": 0.04892361111111111,
+     "tput_p10": 0.03972222222222222,
+     "tput_ci": [
+      0.04545138888888889,
+      0.05204947916666666
+     ],
+     "adv_score": 0.0,
+     "tput_ref": 0.7730769230769231,
+     "tput_score": 0.0015606530732860426,
+     "resist": 0.000624261229314417
+    }
+   },
+   "randomness_tests": {
+    "chi2_uniform": {
+     "fail_fraction": 0.0,
+     "min_p": 1.0,
+     "median_p": 1.0
+    },
+    "serial_corr_lag1": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 1.6756554776889836e-108
+    },
+    "runs": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 4.3701983474790075e-192
+    },
+    "pair_chi2": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "autocorr_max64": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "coincidence_scan": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "lc_plane0": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "lc_plane1": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "lc_plane2": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "lc_plane3": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    }
+   },
+   "shannon_bits": 3.700438876522063,
+   "min_entropy_bits": 3.6989977439671855
+  },
+  "Table-32": {
+   "score": 20.653192911405426,
+   "weighted_mean": 0.5900960588058474,
+   "gate": 0.18749641696473168,
+   "gate_factor": 0.34999713357178536,
+   "axes": {
+    "state_recovery": 1.0,
+    "ngram": 0.18749641696473168,
+    "linear_complexity": 0.25491857288488484,
+    "frequency_bias": 0.8736580401913905,
+    "reactive": 0.981818237785658,
+    "follower": 0.9509869976359339,
+    "sweep_random_band": 0.9899938609614208,
+    "randomness": 0.025000000000000022
+   },
+   "attackers": {
+    "lfsr_breaker": {
+     "hit_mean": 0.07684027777777779,
+     "hit_lo": 0.0746875,
+     "hit_hi": 0.0789939236111111,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.917326388888889,
+     "tput_p10": 0.9113888888888889,
+     "tput_ci": [
+      0.9149305555555556,
+      0.9196883680555555
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "lcg_recovery": {
+     "hit_mean": 0.07878472222222223,
+     "hit_lo": 0.07579861111111111,
+     "hit_hi": 0.08187586805555555,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9157291666666667,
+     "tput_p10": 0.9091666666666667,
+     "tput_ci": [
+      0.912359375,
+      0.9192717013888888
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "xorshift_breaker": {
+     "hit_mean": 0.07819444444444446,
+     "hit_lo": 0.07541666666666667,
+     "hit_hi": 0.08097222222222222,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9160416666666666,
+     "tput_p10": 0.9086111111111111,
+     "tput_ci": [
+      0.9128446180555555,
+      0.9195833333333333
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "ngram": {
+     "hit_mean": 0.9942361111111111,
+     "hit_lo": 0.9857291666666667,
+     "hit_hi": 1.0,
+     "chance": 0.07692307692307693,
+     "significant": true,
+     "advantage_bits": 3.692100126830781,
+     "kind": "predictor",
+     "tput_mean": 0.05420138888888889,
+     "tput_p10": 0.042222222222222223,
+     "tput_ci": [
+      0.04788194444444445,
+      0.06270833333333334
+     ],
+     "adv_score": 0.002253675764376628,
+     "broken_fraction": 1.0,
+     "obs_break_median": 34.0,
+     "obs_break_min": 33,
+     "obs_break_max": 47,
+     "obs_score": 0.46536052876526424,
+     "resist": 0.18749641696473168
+    },
+    "berlekamp_massey": {
+     "hit_mean": 1.0,
+     "hit_lo": 1.0,
+     "hit_hi": 1.0,
+     "chance": 0.07692307692307693,
+     "significant": true,
+     "advantage_bits": 3.700439718141092,
+     "kind": "predictor",
+     "tput_mean": 0.04892361111111111,
+     "tput_p10": 0.03972222222222222,
+     "tput_ci": [
+      0.04545138888888889,
+      0.05204947916666666
+     ],
+     "adv_score": 0.0,
+     "broken_fraction": 1.0,
+     "obs_break_median": 128.0,
+     "obs_break_min": 120,
+     "obs_break_max": 128,
+     "obs_score": 0.6372964322122121,
+     "resist": 0.25491857288488484
+    },
+    "frequency_bias": {
+     "hit_mean": 0.1320138888888889,
+     "hit_lo": 0.10357378472222223,
+     "hit_hi": 0.16007118055555555,
+     "chance": 0.07692307692307693,
+     "significant": true,
+     "advantage_bits": 0.7792013435726072,
+     "kind": "predictor",
+     "tput_mean": 0.865625,
+     "tput_p10": 0.8127777777777778,
+     "tput_ci": [
+      0.8391319444444445,
+      0.8925703125000001
+     ],
+     "adv_score": 0.7894300669856508,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 0.8736580401913905
+    },
+    "reactive_delay": {
+     "hit_mean": 0.06447916666666667,
+     "hit_lo": 0.04100607638888889,
+     "hit_hi": 0.09,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.92875,
+     "tput_p10": 0.8555555555555556,
+     "tput_ci": [
+      0.9038177083333334,
+      0.95121875
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.954545594464145,
+     "resist": 0.981818237785658
+    },
+    "sweep": {
+     "hit_mean": 0.07739583333333333,
+     "hit_lo": 0.07694444444444445,
+     "hit_hi": 0.0778125,
+     "chance": 0.07692307692307693,
+     "significant": true,
+     "advantage_bits": 0.008839428183807455,
+     "kind": "jammer",
+     "tput_mean": 0.9169791666666667,
+     "tput_p10": 0.9144444444444444,
+     "tput_ci": [
+      0.9155902777777778,
+      0.9184722222222221
+     ],
+     "adv_score": 0.9976112492414151,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9971557328605201,
+     "resist": 0.9974290426890571
+    },
+    "random": {
+     "hit_mean": 0.080625,
+     "hit_lo": 0.07742968750000001,
+     "hit_hi": 0.08392447916666666,
+     "chance": 0.07692307692307693,
+     "significant": true,
+     "advantage_bits": 0.06781078378962155,
+     "kind": "jammer",
+     "tput_mean": 0.9135763888888889,
+     "tput_p10": 0.9055555555555556,
+     "tput_ci": [
+      0.9099652777777778,
+      0.9169105902777778
+     ],
+     "adv_score": 0.9816749389384226,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9901250985027581,
+     "resist": 0.9850550027641568
+    },
+    "partial_band": {
+     "hit_mean": 0.3058333333333333,
+     "hit_lo": 0.29128125000000005,
+     "hit_hi": 0.31961805555555556,
+     "chance": 0.3076923076923077,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.7017013888888888,
+     "tput_p10": 0.6711111111111111,
+     "tput_ci": [
+      0.6884322916666668,
+      0.7161475694444445
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.7007692307692307,
+     "tput_score": 0.9687438435776203,
+     "resist": 0.9874975374310482
+    },
+    "follower": {
+     "hit_mean": 0.2421875,
+     "hit_lo": 0.20131944444444444,
+     "hit_hi": 0.2829522569444444,
+     "chance": 0.23076923076923078,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.7619097222222222,
+     "tput_p10": 0.6355555555555557,
+     "tput_ci": [
+      0.7238541666666667,
+      0.8002482638888888
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.7730769230769231,
+     "tput_score": 0.8774674940898346,
+     "resist": 0.9509869976359339
+    }
+   },
+   "randomness_tests": {
+    "chi2_uniform": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "serial_corr_lag1": {
+     "fail_fraction": 0.8125,
+     "min_p": 5.356205701134476e-252,
+     "median_p": 7.006027299740873e-12
+    },
+    "runs": {
+     "fail_fraction": 0.9375,
+     "min_p": 9.375149168557421e-238,
+     "median_p": 1.8360263943258176e-22
+    },
+    "pair_chi2": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "autocorr_max64": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "coincidence_scan": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "lc_plane0": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "lc_plane1": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "lc_plane2": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "lc_plane3": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    }
+   },
+   "shannon_bits": 3.39024125109077,
+   "min_entropy_bits": 2.661308892715593
+  },
+  "HMAC-SHA256": {
+   "score": 99.7827243673934,
+   "weighted_mean": 0.9978272436739339,
+   "gate": 1.0,
+   "gate_factor": 1.0,
+   "axes": {
+    "state_recovery": 1.0,
+    "ngram": 1.0,
+    "linear_complexity": 1.0,
+    "frequency_bias": 1.0,
+    "reactive": 0.9977553684003152,
+    "follower": 0.9957897458628842,
+    "sweep_random_band": 0.9955153199150688,
+    "randomness": 0.99375
+   },
+   "attackers": {
+    "lfsr_breaker": {
+     "hit_mean": 0.07506944444444444,
+     "hit_lo": 0.07256944444444444,
+     "hit_hi": 0.07760416666666667,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9183680555555556,
+     "tput_p10": 0.9127777777777778,
+     "tput_ci": [
+      0.9158663194444445,
+      0.9212161458333333
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "lcg_recovery": {
+     "hit_mean": 0.07659722222222223,
+     "hit_lo": 0.07402777777777778,
+     "hit_hi": 0.07906250000000001,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9173611111111111,
+     "tput_p10": 0.9083333333333333,
+     "tput_ci": [
+      0.9142013888888889,
+      0.9207291666666666
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "xorshift_breaker": {
+     "hit_mean": 0.07826388888888888,
+     "hit_lo": 0.07538107638888888,
+     "hit_hi": 0.08121527777777778,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9155555555555556,
+     "tput_p10": 0.9080555555555556,
+     "tput_ci": [
+      0.9125347222222222,
+      0.9185772569444445
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "ngram": {
+     "hit_mean": 0.07368055555555555,
+     "hit_lo": 0.07100694444444444,
+     "hit_hi": 0.07625000000000001,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.920138888888889,
+     "tput_p10": 0.9130555555555555,
+     "tput_ci": [
+      0.917326388888889,
+      0.9229861111111111
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "berlekamp_massey": {
+     "hit_mean": 0.07690972222222223,
+     "hit_lo": 0.07336718750000001,
+     "hit_hi": 0.08055642361111111,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9173958333333333,
+     "tput_p10": 0.9036111111111111,
+     "tput_ci": [
+      0.9131223958333333,
+      0.9217369791666666
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "frequency_bias": {
+     "hit_mean": 0.07895833333333334,
+     "hit_lo": 0.07572916666666667,
+     "hit_hi": 0.0821875,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.915,
+     "tput_p10": 0.9072222222222222,
+     "tput_ci": [
+      0.9115972222222223,
+      0.9185069444444445
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "reactive_delay": {
+     "hit_mean": 0.07496527777777778,
+     "hit_lo": 0.07263888888888889,
+     "hit_hi": 0.07746527777777779,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.91875,
+     "tput_p10": 0.91,
+     "tput_ci": [
+      0.9159375,
+      0.9216666666666666
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9943884210007881,
+     "resist": 0.9977553684003152
+    },
+    "sweep": {
+     "hit_mean": 0.07729166666666666,
+     "hit_lo": 0.07416666666666667,
+     "hit_hi": 0.08069444444444443,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9167361111111112,
+     "tput_p10": 0.9094444444444445,
+     "tput_ci": [
+      0.9133680555555556,
+      0.9194444444444444
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9936511894208038,
+     "resist": 0.9974604757683215
+    },
+    "random": {
+     "hit_mean": 0.07690972222222223,
+     "hit_lo": 0.07336718750000001,
+     "hit_hi": 0.08055642361111111,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9173958333333333,
+     "tput_p10": 0.9036111111111111,
+     "tput_ci": [
+      0.9131223958333333,
+      0.9217369791666666
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.989666445035461,
+     "resist": 0.9958665780141844
+    },
+    "partial_band": {
+     "hit_mean": 0.3057638888888889,
+     "hit_lo": 0.30065972222222226,
+     "hit_hi": 0.3109722222222222,
+     "chance": 0.3076923076923077,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.7017361111111111,
+     "tput_p10": 0.6827777777777777,
+     "tput_ci": [
+      0.6962838541666666,
+      0.7071536458333333
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.7007692307692307,
+     "tput_score": 0.9830472649067508,
+     "resist": 0.9932189059627003
+    },
+    "follower": {
+     "hit_mean": 0.22944444444444445,
+     "hit_lo": 0.22562500000000002,
+     "hit_hi": 0.23329947916666666,
+     "chance": 0.23076923076923078,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.7743402777777777,
+     "tput_p10": 0.7611111111111111,
+     "tput_ci": [
+      0.7697552083333333,
+      0.7788194444444445
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.7730769230769231,
+     "tput_score": 0.9894743646572104,
+     "resist": 0.9957897458628842
+    }
+   },
+   "randomness_tests": {
+    "chi2_uniform": {
+     "fail_fraction": 0.0,
+     "min_p": 0.09849970116117156,
+     "median_p": 0.38229763927091015
+    },
+    "serial_corr_lag1": {
+     "fail_fraction": 0.0,
+     "min_p": 0.04824968662635411,
+     "median_p": 0.48903483578014023
+    },
+    "runs": {
+     "fail_fraction": 0.0,
+     "min_p": 0.12232365789069186,
+     "median_p": 0.4018722803249195
+    },
+    "pair_chi2": {
+     "fail_fraction": 0.0,
+     "min_p": 0.06596688074796779,
+     "median_p": 0.31344775981168693
+    },
+    "autocorr_max64": {
+     "fail_fraction": 0.0,
+     "min_p": 0.178845552656991,
+     "median_p": 0.3568169639011672
+    },
+    "coincidence_scan": {
+     "fail_fraction": 0.0,
+     "min_p": 0.06114715351967625,
+     "median_p": 0.3283262494044441
+    },
+    "lc_plane0": {
+     "fail_fraction": 0.0,
+     "min_p": 0.007021573953175698,
+     "median_p": 0.8292484591829845
+    },
+    "lc_plane1": {
+     "fail_fraction": 0.0625,
+     "min_p": 0.00024607147206300256,
+     "median_p": 0.6397999013839146
+    },
+    "lc_plane2": {
+     "fail_fraction": 0.0,
+     "min_p": 0.007021573953175698,
+     "median_p": 0.45035134358484463
+    },
+    "lc_plane3": {
+     "fail_fraction": 0.0,
+     "min_p": 0.2355589199240989,
+     "median_p": 0.8292484591829845
+    }
+   },
+   "shannon_bits": 3.6989679169394467,
+   "min_entropy_bits": 3.5862722507212172
+  },
+  "SipHash-2-4": {
+   "score": 99.79805426954732,
+   "weighted_mean": 0.9979805426954732,
+   "gate": 1.0,
+   "gate_factor": 1.0,
+   "axes": {
+    "state_recovery": 1.0,
+    "ngram": 1.0,
+    "linear_complexity": 1.0,
+    "frequency_bias": 1.0,
+    "reactive": 0.9975349684791175,
+    "follower": 0.9968942080378251,
+    "sweep_random_band": 0.9964515065449611,
+    "randomness": 0.99375
+   },
+   "attackers": {
+    "lfsr_breaker": {
+     "hit_mean": 0.0779861111111111,
+     "hit_lo": 0.07510416666666667,
+     "hit_hi": 0.0810078125,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9159375000000001,
+     "tput_p10": 0.9069444444444446,
+     "tput_ci": [
+      0.9126032986111111,
+      0.9191675347222222
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "lcg_recovery": {
+     "hit_mean": 0.07645833333333334,
+     "hit_lo": 0.07395746527777779,
+     "hit_hi": 0.07934027777777777,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9176736111111111,
+     "tput_p10": 0.9097222222222223,
+     "tput_ci": [
+      0.9147222222222222,
+      0.9204513888888889
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "xorshift_breaker": {
+     "hit_mean": 0.07642361111111111,
+     "hit_lo": 0.07336805555555556,
+     "hit_hi": 0.0796189236111111,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9173611111111111,
+     "tput_p10": 0.9097222222222223,
+     "tput_ci": [
+      0.9141302083333334,
+      0.9205555555555556
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "ngram": {
+     "hit_mean": 0.07850694444444445,
+     "hit_lo": 0.07635416666666667,
+     "hit_hi": 0.08069444444444444,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9156944444444445,
+     "tput_p10": 0.9083333333333334,
+     "tput_ci": [
+      0.9131241319444444,
+      0.9180902777777777
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "berlekamp_massey": {
+     "hit_mean": 0.07809027777777777,
+     "hit_lo": 0.07538194444444445,
+     "hit_hi": 0.0811111111111111,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9161805555555556,
+     "tput_p10": 0.9094444444444445,
+     "tput_ci": [
+      0.9130902777777778,
+      0.9191666666666667
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "frequency_bias": {
+     "hit_mean": 0.0763888888888889,
+     "hit_lo": 0.07402777777777778,
+     "hit_hi": 0.07871527777777779,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9174305555555555,
+     "tput_p10": 0.9072222222222222,
+     "tput_ci": [
+      0.9139921875,
+      0.9209027777777777
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "reactive_delay": {
+     "hit_mean": 0.07718749999999999,
+     "hit_lo": 0.07423611111111111,
+     "hit_hi": 0.07982725694444442,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9170486111111111,
+     "tput_p10": 0.91,
+     "tput_ci": [
+      0.9139236111111111,
+      0.9203836805555556
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9938374211977936,
+     "resist": 0.9975349684791175
+    },
+    "sweep": {
+     "hit_mean": 0.07625000000000001,
+     "hit_lo": 0.07357638888888889,
+     "hit_hi": 0.07892447916666667,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9182291666666667,
+     "tput_p10": 0.9130555555555555,
+     "tput_ci": [
+      0.9157291666666667,
+      0.9208680555555555
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9962892164105595,
+     "resist": 0.9985156865642237
+    },
+    "random": {
+     "hit_mean": 0.07809027777777777,
+     "hit_lo": 0.07538194444444445,
+     "hit_hi": 0.0811111111111111,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9161805555555556,
+     "tput_p10": 0.9094444444444445,
+     "tput_ci": [
+      0.9130902777777778,
+      0.9191666666666667
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9934341755319149,
+     "resist": 0.997373670212766
+    },
+    "partial_band": {
+     "hit_mean": 0.3108680555555555,
+     "hit_lo": 0.3055199652777778,
+     "hit_hi": 0.3154166666666667,
+     "chance": 0.3076923076923077,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.6972916666666666,
+     "tput_p10": 0.6861111111111111,
+     "tput_ci": [
+      0.6923255208333333,
+      0.7030555555555555
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.7007692307692307,
+     "tput_score": 0.9836629071447334,
+     "resist": 0.9934651628578933
+    },
+    "follower": {
+     "hit_mean": 0.2299652777777778,
+     "hit_lo": 0.2254861111111111,
+     "hit_hi": 0.2339939236111111,
+     "chance": 0.23076923076923078,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.7736805555555555,
+     "tput_p10": 0.7644444444444445,
+     "tput_ci": [
+      0.7701727430555556,
+      0.7775008680555555
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.7730769230769231,
+     "tput_score": 0.9922355200945627,
+     "resist": 0.9968942080378251
+    }
+   },
+   "randomness_tests": {
+    "chi2_uniform": {
+     "fail_fraction": 0.0,
+     "min_p": 0.014211123659033457,
+     "median_p": 0.726078812471184
+    },
+    "serial_corr_lag1": {
+     "fail_fraction": 0.0,
+     "min_p": 0.13765905859357375,
+     "median_p": 0.6357410558350411
+    },
+    "runs": {
+     "fail_fraction": 0.0,
+     "min_p": 0.1834293061301584,
+     "median_p": 0.45727755938938397
+    },
+    "pair_chi2": {
+     "fail_fraction": 0.0,
+     "min_p": 0.001230469229172697,
+     "median_p": 0.5868760301828349
+    },
+    "autocorr_max64": {
+     "fail_fraction": 0.0,
+     "min_p": 0.017866954233473793,
+     "median_p": 0.4538028752259132
+    },
+    "coincidence_scan": {
+     "fail_fraction": 0.0,
+     "min_p": 0.003824538740829899,
+     "median_p": 0.3658461750360621
+    },
+    "lc_plane0": {
+     "fail_fraction": 0.0,
+     "min_p": 0.08446903225324304,
+     "median_p": 0.6397999013839146
+    },
+    "lc_plane1": {
+     "fail_fraction": 0.0,
+     "min_p": 0.08446903225324304,
+     "median_p": 0.45035134358484463
+    },
+    "lc_plane2": {
+     "fail_fraction": 0.0625,
+     "min_p": 3.5382866306674167e-06,
+     "median_p": 0.8292484591829845
+    },
+    "lc_plane3": {
+     "fail_fraction": 0.0,
+     "min_p": 0.08446903225324304,
+     "median_p": 0.8292484591829845
+    }
+   },
+   "shannon_bits": 3.6990974612779737,
+   "min_entropy_bits": 3.602542622179631
+  },
+  "Control: constant": {
+   "score": 6.177925839636232,
+   "weighted_mean": 0.30889629198181157,
+   "gate": 0.0,
+   "gate_factor": 0.2,
+   "axes": {
+    "state_recovery": 1.0,
+    "ngram": 0.0,
+    "linear_complexity": 0.1304828447371248,
+    "frequency_bias": 0.0,
+    "reactive": 0.000520217691095344,
+    "follower": 0.000624261229314417,
+    "sweep_random_band": 0.9576269180675947,
+    "randomness": 0.0
+   },
+   "attackers": {
+    "lfsr_breaker": {
+     "hit_mean": 0.07774305555555555,
+     "hit_lo": 0.07392274305555557,
+     "hit_hi": 0.08149479166666665,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9164583333333334,
+     "tput_p10": 0.9091666666666667,
+     "tput_ci": [
+      0.9132291666666666,
+      0.9196197916666666
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "lcg_recovery": {
+     "hit_mean": 0.07774305555555555,
+     "hit_lo": 0.07395833333333333,
+     "hit_hi": 0.08152864583333333,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9159375,
+     "tput_p10": 0.9069444444444444,
+     "tput_ci": [
+      0.9123611111111112,
+      0.9193402777777777
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "xorshift_breaker": {
+     "hit_mean": 0.07774305555555555,
+     "hit_lo": 0.07395833333333333,
+     "hit_hi": 0.08152864583333333,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9170138888888889,
+     "tput_p10": 0.908611111111111,
+     "tput_ci": [
+      0.9136449652777777,
+      0.9203819444444444
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "ngram": {
+     "hit_mean": 1.0,
+     "hit_lo": 1.0,
+     "hit_hi": 1.0,
+     "chance": 0.07692307692307693,
+     "significant": true,
+     "advantage_bits": 3.700439718141092,
+     "kind": "predictor",
+     "tput_mean": 0.04892361111111111,
+     "tput_p10": 0.03972222222222222,
+     "tput_ci": [
+      0.04545138888888889,
+      0.05204947916666666
+     ],
+     "adv_score": 0.0,
+     "broken_fraction": 1.0,
+     "obs_break_median": 1.0,
+     "obs_break_min": 0,
+     "obs_break_max": 1,
+     "obs_score": 0.0,
+     "resist": 0.0
+    },
+    "berlekamp_massey": {
+     "hit_mean": 1.0,
+     "hit_lo": 1.0,
+     "hit_hi": 1.0,
+     "chance": 0.07692307692307693,
+     "significant": true,
+     "advantage_bits": 3.700439718141092,
+     "kind": "predictor",
+     "tput_mean": 0.04892361111111111,
+     "tput_p10": 0.03972222222222222,
+     "tput_ci": [
+      0.04545138888888889,
+      0.05204947916666666
+     ],
+     "adv_score": 0.0,
+     "broken_fraction": 1.0,
+     "obs_break_median": 12.0,
+     "obs_break_min": 11,
+     "obs_break_max": 12,
+     "obs_score": 0.326207111842812,
+     "resist": 0.1304828447371248
+    },
+    "frequency_bias": {
+     "hit_mean": 1.0,
+     "hit_lo": 1.0,
+     "hit_hi": 1.0,
+     "chance": 0.07692307692307693,
+     "significant": true,
+     "advantage_bits": 3.700439718141092,
+     "kind": "predictor",
+     "tput_mean": 0.04892361111111111,
+     "tput_p10": 0.03972222222222222,
+     "tput_ci": [
+      0.04545138888888889,
+      0.05204947916666666
+     ],
+     "adv_score": 0.0,
+     "broken_fraction": 1.0,
+     "obs_break_median": 1.0,
+     "obs_break_min": 0,
+     "obs_break_max": 1,
+     "obs_score": 0.0,
+     "resist": 0.0
+    },
+    "reactive_delay": {
+     "hit_mean": 1.0,
+     "hit_lo": 1.0,
+     "hit_hi": 1.0,
+     "chance": 0.07692307692307693,
+     "significant": true,
+     "advantage_bits": 3.700439718141092,
+     "kind": "jammer",
+     "tput_mean": 0.04892361111111111,
+     "tput_p10": 0.03972222222222222,
+     "tput_ci": [
+      0.04545138888888889,
+      0.05204947916666666
+     ],
+     "adv_score": 0.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.0013005442277383601,
+     "resist": 0.000520217691095344
+    },
+    "sweep": {
+     "hit_mean": 0.076875,
+     "hit_lo": 0.0767361111111111,
+     "hit_hi": 0.07701388888888888,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9172222222222222,
+     "tput_p10": 0.9136111111111112,
+     "tput_ci": [
+      0.9159722222222223,
+      0.9185069444444445
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9968494508471237,
+     "resist": 0.9987397803388495
+    },
+    "random": {
+     "hit_mean": 0.07767361111111111,
+     "hit_lo": 0.07381857638888889,
+     "hit_hi": 0.08152777777777778,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9172569444444445,
+     "tput_p10": 0.9091666666666667,
+     "tput_ci": [
+      0.9137152777777778,
+      0.9207638888888889
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9932371700157605,
+     "resist": 0.9972948680063042
+    },
+    "partial_band": {
+     "hit_mean": 0.3385416666666667,
+     "hit_lo": 0.2482638888888889,
+     "hit_hi": 0.4340277777777778,
+     "chance": 0.3076923076923077,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.6714583333333333,
+     "tput_p10": 0.3897222222222222,
+     "tput_ci": [
+      0.5815173611111111,
+      0.7569470486111111
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.7007692307692307,
+     "tput_score": 0.6921152646440767,
+     "resist": 0.8768461058576307
+    },
+    "follower": {
+     "hit_mean": 1.0,
+     "hit_lo": 1.0,
+     "hit_hi": 1.0,
+     "chance": 0.23076923076923078,
+     "significant": true,
+     "advantage_bits": 2.1154772174199357,
+     "kind": "jammer",
+     "tput_mean": 0.04892361111111111,
+     "tput_p10": 0.03972222222222222,
+     "tput_ci": [
+      0.04545138888888889,
+      0.05204947916666666
+     ],
+     "adv_score": 0.0,
+     "tput_ref": 0.7730769230769231,
+     "tput_score": 0.0015606530732860426,
+     "resist": 0.000624261229314417
+    }
+   },
+   "randomness_tests": {
+    "chi2_uniform": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "serial_corr_lag1": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "runs": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "pair_chi2": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "autocorr_max64": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "coincidence_scan": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "lc_plane0": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "lc_plane1": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "lc_plane2": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    },
+    "lc_plane3": {
+     "fail_fraction": 1.0,
+     "min_p": 0.0,
+     "median_p": 0.0
+    }
+   },
+   "shannon_bits": 0.0,
+   "min_entropy_bits": 0.0
+  },
+  "Control: ideal-random": {
+   "score": 99.90735766351457,
+   "weighted_mean": 0.9990735766351457,
+   "gate": 1.0,
+   "gate_factor": 1.0,
+   "axes": {
+    "state_recovery": 1.0,
+    "ngram": 1.0,
+    "linear_complexity": 1.0,
+    "frequency_bias": 1.0,
+    "reactive": 0.9978686465721041,
+    "follower": 0.9949785756501182,
+    "sweep_random_band": 0.9959558461386919,
+    "randomness": 1.0
+   },
+   "attackers": {
+    "lfsr_breaker": {
+     "hit_mean": 0.07642361111111111,
+     "hit_lo": 0.07468749999999999,
+     "hit_hi": 0.078125,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9171180555555555,
+     "tput_p10": 0.9105555555555556,
+     "tput_ci": [
+      0.9148602430555556,
+      0.9194791666666666
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "lcg_recovery": {
+     "hit_mean": 0.07541666666666666,
+     "hit_lo": 0.07256944444444444,
+     "hit_hi": 0.07812586805555555,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9185069444444444,
+     "tput_p10": 0.9105555555555556,
+     "tput_ci": [
+      0.9155902777777778,
+      0.9215972222222222
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "xorshift_breaker": {
+     "hit_mean": 0.07378472222222222,
+     "hit_lo": 0.06996527777777778,
+     "hit_hi": 0.07753472222222221,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9203472222222222,
+     "tput_p10": 0.9111111111111112,
+     "tput_ci": [
+      0.9164236111111111,
+      0.9244444444444444
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "ngram": {
+     "hit_mean": 0.07864583333333333,
+     "hit_lo": 0.07569444444444445,
+     "hit_hi": 0.08170138888888889,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9155555555555556,
+     "tput_p10": 0.9063888888888889,
+     "tput_ci": [
+      0.9125347222222222,
+      0.9185416666666667
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "berlekamp_massey": {
+     "hit_mean": 0.07586805555555556,
+     "hit_lo": 0.07277777777777779,
+     "hit_hi": 0.07899305555555555,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9185069444444445,
+     "tput_p10": 0.9097222222222222,
+     "tput_ci": [
+      0.9150347222222222,
+      0.9221536458333334
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "frequency_bias": {
+     "hit_mean": 0.078125,
+     "hit_lo": 0.0753125,
+     "hit_hi": 0.08059114583333334,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "predictor",
+     "tput_mean": 0.9165277777777778,
+     "tput_p10": 0.9097222222222223,
+     "tput_ci": [
+      0.9138880208333333,
+      0.9195486111111111
+     ],
+     "adv_score": 1.0,
+     "broken_fraction": 0.0,
+     "obs_break_median": null,
+     "obs_break_min": null,
+     "obs_break_max": null,
+     "obs_score": 1.0,
+     "resist": 1.0
+    },
+    "reactive_delay": {
+     "hit_mean": 0.07631944444444444,
+     "hit_lo": 0.07319444444444445,
+     "hit_hi": 0.07989583333333333,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9175,
+     "tput_p10": 0.9111111111111112,
+     "tput_ci": [
+      0.9140277777777779,
+      0.9206605902777777
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.99467161643026,
+     "resist": 0.9978686465721041
+    },
+    "sweep": {
+     "hit_mean": 0.07940972222222221,
+     "hit_lo": 0.07666666666666666,
+     "hit_hi": 0.08222222222222222,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.914826388888889,
+     "tput_p10": 0.9058333333333334,
+     "tput_ci": [
+      0.9113541666666667,
+      0.9182638888888889
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9905160313238771,
+     "resist": 0.9962064125295509
+    },
+    "random": {
+     "hit_mean": 0.07586805555555556,
+     "hit_lo": 0.07277777777777779,
+     "hit_hi": 0.07899305555555555,
+     "chance": 0.07692307692307693,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.9185069444444445,
+     "tput_p10": 0.9097222222222222,
+     "tput_ci": [
+      0.9150347222222222,
+      0.9221536458333334
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.9176923076923077,
+     "tput_score": 0.9938481949369582,
+     "resist": 0.9975392779747833
+    },
+    "partial_band": {
+     "hit_mean": 0.3085416666666667,
+     "hit_lo": 0.3038185763888889,
+     "hit_hi": 0.31333506944444445,
+     "chance": 0.3076923076923077,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.6990972222222223,
+     "tput_p10": 0.6866666666666668,
+     "tput_ci": [
+      0.6942708333333334,
+      0.7039583333333334
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.7007692307692307,
+     "tput_score": 0.9853046197793539,
+     "resist": 0.9941218479117415
+    },
+    "follower": {
+     "hit_mean": 0.22878472222222224,
+     "hit_lo": 0.22298524305555556,
+     "hit_hi": 0.23427256944444444,
+     "chance": 0.23076923076923078,
+     "significant": false,
+     "advantage_bits": 0.0,
+     "kind": "jammer",
+     "tput_mean": 0.7740972222222222,
+     "tput_p10": 0.7591666666666668,
+     "tput_ci": [
+      0.7683680555555557,
+      0.7805555555555556
+     ],
+     "adv_score": 1.0,
+     "tput_ref": 0.7730769230769231,
+     "tput_score": 0.9874464391252955,
+     "resist": 0.9949785756501182
+    }
+   },
+   "randomness_tests": {
+    "chi2_uniform": {
+     "fail_fraction": 0.0,
+     "min_p": 0.0343607699967382,
+     "median_p": 0.45054582720346353
+    },
+    "serial_corr_lag1": {
+     "fail_fraction": 0.0,
+     "min_p": 0.06818439809309693,
+     "median_p": 0.5951880168195803
+    },
+    "runs": {
+     "fail_fraction": 0.0,
+     "min_p": 0.1089827048128938,
+     "median_p": 0.6006849823378906
+    },
+    "pair_chi2": {
+     "fail_fraction": 0.0,
+     "min_p": 0.05755652384157568,
+     "median_p": 0.5600532028141991
+    },
+    "autocorr_max64": {
+     "fail_fraction": 0.0,
+     "min_p": 0.007837082043879671,
+     "median_p": 0.6513302197498143
+    },
+    "coincidence_scan": {
+     "fail_fraction": 0.0,
+     "min_p": 0.10381525781459057,
+     "median_p": 0.5111542766854055
+    },
+    "lc_plane0": {
+     "fail_fraction": 0.0,
+     "min_p": 0.031032519500148736,
+     "median_p": 0.45035134358484463
+    },
+    "lc_plane1": {
+     "fail_fraction": 0.0,
+     "min_p": 0.031032519500148736,
+     "median_p": 0.45035134358484463
+    },
+    "lc_plane2": {
+     "fail_fraction": 0.0,
+     "min_p": 0.08446903225324304,
+     "median_p": 0.45035134358484463
+    },
+    "lc_plane3": {
+     "fail_fraction": 0.0,
+     "min_p": 0.2355589199240989,
+     "median_p": 0.45035134358484463
+    }
+   },
+   "shannon_bits": 3.698991567579525,
+   "min_entropy_bits": 3.596714421058018
+  }
+ }
+}

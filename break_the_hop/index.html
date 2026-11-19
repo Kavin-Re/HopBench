@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Break the Hop</title>
+<style>
+:root{
+  --bg:#f4f6f9; --card:#ffffff; --ink:#15202b; --muted:#5b6876; --line:#d9dfe7;
+  --accent:#1f5fd1; --accent-ink:#ffffff; --good:#14803c; --bad:#c0262d; --warn:#a85d00;
+  --cell:#eef2f7; --cell-hover:#dce6f6; --hop:#3b6fd4; --shadow:0 1px 2px rgba(15,25,40,.08);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141b; --card:#18202a; --ink:#e8edf3; --muted:#9aa7b5; --line:#2b3644;
+    --accent:#6ea0ff; --accent-ink:#0b1220; --good:#45c277; --bad:#ff7a80; --warn:#f0b04a;
+    --cell:#222c39; --cell-hover:#2d3b4e; --hop:#6ea0ff; --shadow:none;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+main{max-width:760px;margin:0 auto;padding:16px}
+h1{font-size:1.7rem;margin:.2rem 0 .1rem;letter-spacing:-.01em}
+h2{font-size:1.05rem;margin:0 0 .5rem}
+p{margin:.4rem 0}
+.sub{color:var(--muted);margin:0 0 .8rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0;box-shadow:var(--shadow)}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.tab{min-height:56px;border:1px solid var(--line);background:var(--cell);color:var(--ink);border-radius:10px;padding:6px 8px;font:inherit;cursor:pointer;text-align:left}
+.tab small{display:block;color:var(--muted);font-size:.75rem;line-height:1.2}
+.tab b{font-size:.92rem}
+.tab[aria-pressed="true"]{border-color:var(--accent);outline:2px solid var(--accent);background:var(--card)}
+.status{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:.9rem;margin-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+@media (max-width:430px){.grid{grid-template-columns:repeat(5,1fr)}}
+.ch{min-height:52px;border:1px solid var(--line);background:var(--cell);color:var(--ink);border-radius:10px;font:600 1.05rem system-ui,sans-serif;cursor:pointer;touch-action:manipulation;position:relative}
+.ch:hover{background:var(--cell-hover)}
+.ch:focus-visible,.btn:focus-visible,.tab:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.ch.hop{background:var(--hop);color:var(--accent-ink);border-color:var(--hop)}
+.ch.hit{background:var(--good);border-color:var(--good);color:#fff}
+.ch.miss-pick{outline:3px solid var(--bad);outline-offset:-3px}
+.ch:disabled{opacity:.55;cursor:default}
+.feedback{min-height:1.6em;margin-top:8px;font-weight:600}
+.good{color:var(--good)} .bad{color:var(--bad)} .warn{color:var(--warn)}
+canvas{width:100%;display:block;border-radius:8px;background:var(--cell)}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.chip{min-width:30px;text-align:center;padding:2px 6px;border-radius:999px;font-size:.82rem;background:var(--cell);border:1px solid var(--line)}
+.chip.hit{background:var(--good);color:#fff;border-color:var(--good)}
+.chip.miss{border-color:var(--bad)}
+.chip.free{opacity:.65}
+.legend{font-size:.8rem;color:var(--muted);margin-top:6px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.stat b{display:block;font-size:1.5rem;line-height:1.15}
+.stat span{font-size:.78rem;color:var(--muted)}
+.bar{position:relative;height:16px;background:var(--cell);border-radius:8px;margin:14px 0 4px}
+.bar .ci{position:absolute;top:4px;height:8px;background:var(--accent);opacity:.35;border-radius:4px}
+.bar .you{position:absolute;top:-3px;width:4px;height:22px;background:var(--accent);border-radius:2px;transform:translateX(-2px)}
+.bar .chance{position:absolute;top:-6px;width:2px;height:28px;background:var(--bad)}
+.barlabels{display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{min-height:46px;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--cell);color:var(--ink);font:600 .95rem system-ui,sans-serif;cursor:pointer;touch-action:manipulation}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:disabled{opacity:.5;cursor:default}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.tablewrap{overflow-x:auto}
+details summary{cursor:pointer;font-weight:600}
+svg text{fill:var(--muted);font:11px system-ui,sans-serif}
+.note{font-size:.84rem;color:var(--muted)}
+dialog{max-width:min(94vw,680px);border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);padding:14px}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+dialog img{width:100%;height:auto;border-radius:8px;display:block}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion: no-preference){.ch{transition:background .12s}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Break the Hop</h1>
+  <p class="sub">A frequency-hopping radio jumps between 13 channels. Can you predict the next one? Simulation only: no radio is involved, everything runs in this page and works offline.</p>
+
+  <details class="card">
+    <summary>How this works</summary>
+    <p>Each slot the transmitter hops to one of 13 channels, chosen by a schedule generator. You see the past hops and click the channel you expect next. A pure guesser is right 1 time in 13 (7.7 %). Three schedules to try:</p>
+    <p><b>Weak: LFSR-16</b> is a 16-bit shift register. Its whole secret is a 16-bit state (65,535 possibilities). <b>Weak: LCG-24</b> is a linear congruential generator with a 24-bit state. <b>Keyed: SipHash-2-4</b> hashes the slot number with a 128-bit secret key.</p>
+    <p>All three look random to a person. The button <i>Reveal the attack</i> runs a breaker that knows the algorithm but not the secret and keeps only the secrets consistent with the hops seen so far.</p>
+    <p class="note">The first 20 hops are shown for free so you have something to study. Channel labels 1 to 13 correspond to channel indices 0 to 12 in the HopBench Python package.</p>
+  </details>
+
+  <div class="card">
+    <div class="tabs" id="tabs" role="group" aria-label="Schedule"></div>
+    <p class="note" id="modeNote" style="margin-top:8px"></p>
+  </div>
+
+  <div class="card">
+    <div class="status"><span id="slotInfo"></span><span id="obsInfo"></span></div>
+    <div class="grid" id="grid" role="group" aria-label="Pick the next channel"></div>
+    <div class="feedback" id="feedback" aria-live="polite">Pick the channel you think comes next.</div>
+  </div>
+
+  <div class="card">
+    <h2>Past hops</h2>
+    <canvas id="wf" height="190" role="img" aria-label="Waterfall of recent hops: columns are time slots, rows are channels"></canvas>
+    <div class="legend">Columns are time slots (newest at right), rows are channels 1 (top) to 13. Blue = the hop. Green = you predicted it. Red ring = your wrong guess.</div>
+    <div class="chips" id="chips" aria-label="Recent hops as numbers"></div>
+  </div>
+
+  <div class="card">
+    <h2>Your score vs chance</h2>
+    <div class="stats">
+      <div class="stat"><b id="sN">0</b><span>predictions</span></div>
+      <div class="stat"><b id="sHit">0</b><span>correct</span></div>
+      <div class="stat"><b id="sAcc">-</b><span>accuracy (chance 7.7 %)</span></div>
+    </div>
+    <div class="bar" aria-hidden="true"><div class="ci" id="barCI"></div><div class="chance" id="barChance"></div><div class="you" id="barYou"></div></div>
+    <div class="barlabels" aria-hidden="true"><span>0 %</span><span>red line = chance</span><span>40 %</span></div>
+    <p id="verdict" style="margin-top:10px"></p>
+    <p class="note" id="pinfo"></p>
+  </div>
+
+  <div class="row">
+    <button class="btn primary" id="btnReveal">Reveal the attack</button>
+    <button class="btn" id="btnReset">New secret</button>
+    <button class="btn" id="btnShare">Share card (PNG)</button>
+  </div>
+
+  <div class="card" id="reveal" hidden>
+    <h2 id="revTitle">The attack</h2>
+    <p id="revLead"></p>
+    <div id="revChart"></div>
+    <div class="tablewrap"><table id="revTable"></table></div>
+    <p class="row" style="margin-top:10px"><button class="btn" id="btnMany">Try 40 other secrets</button><span class="note" id="manyOut" style="align-self:center"></span></p>
+    <p class="note" id="revCaveat"></p>
+  </div>
+
+  <p class="note">Limits: this is a classroom toy. The breaker is one specific attack; failing against it does not prove the keyed schedule is secure, and real radios add timing, synchronisation and RF effects that are not modelled here. Part of the HopBench project (simulation and education only).</p>
+</main>
+
+<dialog id="dlg">
+  <img id="dlgImg" alt="Share card preview">
+  <div class="row" style="margin-top:10px"><a class="btn primary" id="dlgDl" download="break-the-hop.png" style="text-decoration:none;display:inline-flex;align-items:center">Download PNG</a><button class="btn" id="dlgClose">Close</button></div>
+  <p class="note">On a phone, long-press the image to save it.</p>
+</dialog>
+
+<script>
+(function(){
+'use strict';
+var M = 13, PRELUDE = 20, COLS = 48;
+function $(id){ return document.getElementById(id); }
+
+/* ------------------------------------------------------------------ generators (match hopbench/schedules.py) */
+function lfsrStep(s){ var b = ((s>>0)^(s>>2)^(s>>3)^(s>>5)) & 1; return (s>>1) | (b<<15); }
+var LCG_A = 0xFD43FD, LCG_C = 12820163;
+function lcgStep(x){ return (Math.imul(LCG_A, x) + LCG_C) & 0xFFFFFF; }
+
+var M64 = (1n<<64n) - 1n;
+function rotl(x,b){ return ((x << BigInt(b)) | (x >> BigInt(64-b))) & M64; }
+function sipround(v){
+  var v0=v[0],v1=v[1],v2=v[2],v3=v[3];
+  v0=(v0+v1)&M64; v1=rotl(v1,13); v1^=v0; v0=rotl(v0,32);
+  v2=(v2+v3)&M64; v3=rotl(v3,16); v3^=v2;
+  v0=(v0+v3)&M64; v3=rotl(v3,21); v3^=v0;
+  v2=(v2+v1)&M64; v1=rotl(v1,17); v1^=v2; v2=rotl(v2,32);
+  v[0]=v0;v[1]=v1;v[2]=v2;v[3]=v3;
+}
+function le64(bytes, off){ var r = 0n; for (var i=7;i>=0;i--) r = (r<<8n) | BigInt(bytes[off+i]); return r; }
+/* SipHash-2-4 of the 8-byte little-endian slot number; key is 16 bytes. Returns BigInt. */
+function sipSlot(key, slot){
+  var k0 = le64(key,0), k1 = le64(key,8), m = BigInt(slot) & M64;
+  var v = [k0^0x736f6d6570736575n, k1^0x646f72616e646f6dn, k0^0x6c7967656e657261n, k1^0x7465646279746573n];
+  v[3]^=m; sipround(v); sipround(v); v[0]^=m;
+  var b = 8n<<56n;
+  v[3]^=b; sipround(v); sipround(v); v[0]^=b;
+  v[2]^=0xffn; sipround(v); sipround(v); sipround(v); sipround(v);
+  return v[0]^v[1]^v[2]^v[3];
+}
+function sipHop(key, slot){ return Number(sipSlot(key, slot) % 13n); }
+
+function randBytes(n){
+  var a = new Uint8Array(n);
+  try { crypto.getRandomValues(a); } catch(e){ for (var i=0;i<n;i++) a[i] = Math.floor(Math.random()*256); }
+  return a;
+}
+
+var MODES = {
+  lfsr:  { id:'lfsr',  title:'Weak: LFSR-16',  small:'16-bit secret state', secretBits:'16 bits',
+           note:'hop = state mod 13, state updated by a 16-bit shift register. Whole secret: 65,535 possible states.' },
+  lcg:   { id:'lcg',   title:'Weak: LCG-24',   small:'24-bit secret state', secretBits:'24 bits',
+           note:'hop = (x >> 8) mod 13, x updated by a linear congruential step. Whole secret: 16.7 million possible states.' },
+  keyed: { id:'keyed', title:'Keyed: SipHash', small:'128-bit secret key',  secretBits:'128 bits',
+           note:'hop = SipHash-2-4(key, slot) mod 13. The attacker knows the algorithm but not the 128-bit key.' }
+};
+var MODE_ORDER = ['lfsr','lcg','keyed'];
+
+function makeSchedule(mode, secret){
+  /* secret: lfsr -> int 1..65535; lcg -> int 0..2^24-1; keyed -> Uint8Array(16) */
+  var cache = [], x = secret;
+  return {
+    mode: mode, secret: secret,
+    hop: function(t){
+      if (mode === 'keyed') return sipHop(secret, t);
+      while (cache.length <= t){
+        if (mode === 'lfsr'){ cache.push(x % M); x = lfsrStep(x); }
+        else { cache.push((x >> 8) % M); x = lcgStep(x); }
+      }
+      return cache[t];
+    }
+  };
+}
+function newSecret(mode){
+  var b = randBytes(16);
+  if (mode === 'lfsr') return ((b[0]<<8 | b[1]) % 65535) + 1;
+  if (mode === 'lcg') return (b[0]<<16 | b[1]<<8 | b[2]);
+  return b;
+}
+
+/* ------------------------------------------------------------------ breakers (candidate elimination, match hopbench/attackers.py) */
+var MOD13_16 = null, LCG_BUCKETS = null, LFSR_BUCKETS = null;
+function mod13Table(){
+  if (!MOD13_16){ MOD13_16 = new Uint8Array(65536); for (var i=0;i<65536;i++) MOD13_16[i] = i % M; }
+  return MOD13_16;
+}
+function lfsrBuckets(){
+  if (LFSR_BUCKETS) return LFSR_BUCKETS;
+  var cnt = new Uint32Array(M), s;
+  for (s=1;s<65536;s++) cnt[s % M]++;
+  var b = [], fill = new Uint32Array(M);
+  for (var c=0;c<M;c++) b.push(new Uint32Array(cnt[c]));
+  for (s=1;s<65536;s++){ var c2 = s % M; b[c2][fill[c2]++] = s; }
+  LFSR_BUCKETS = b; return b;
+}
+function lcgBuckets(){
+  if (LCG_BUCKETS) return LCG_BUCKETS;
+  var t = mod13Table(), cnt = new Uint32Array(M), x;
+  for (x=0;x<16777216;x++) cnt[t[x>>8]]++;
+  var b = [], fill = new Uint32Array(M);
+  for (var c=0;c<M;c++) b.push(new Uint32Array(cnt[c]));
+  for (x=0;x<16777216;x++){ var c2 = t[x>>8]; b[c2][fill[c2]++] = x; }
+  LCG_BUCKETS = b; return b;
+}
+var KIND = {
+  lfsr: { step: lfsrStep, out: function(x){ return x % M; }, buckets: lfsrBuckets, space: 65535 },
+  lcg:  { step: lcgStep,  out: function(x){ return (x>>8) % M; }, buckets: lcgBuckets, space: 16777216 }
+};
+function Rng(seed){ var s = seed>>>0 || 1; return function(){ s ^= s<<13; s >>>= 0; s ^= s>>>17; s ^= s<<5; s >>>= 0; return s; }; }
+
+/* Run a candidate-elimination breaker for generator `kind` over the hop list.
+   Returns sizes[i] = candidates left after seeing hops 0..i, preds[i] = guess for hop i made before seeing it. */
+function eliminate(kind, hops, seed){
+  var K = KIND[kind], rnd = Rng(seed || 12345), cand = null, sizes = [], preds = [], VOTE_CAP = 200000;
+  for (var i=0;i<hops.length;i++){
+    var p;
+    if (cand === null || cand.length === 0 || cand.length > VOTE_CAP) p = rnd() % M;
+    else if (cand.length === 1) p = K.out(K.step(cand[0]));
+    else {
+      var votes = new Uint32Array(M);
+      for (var j=0;j<cand.length;j++) votes[K.out(K.step(cand[j]))]++;
+      p = 0; for (var c=1;c<M;c++) if (votes[c] > votes[p]) p = c;
+    }
+    preds.push(p);
+    var h = hops[i];
+    if (cand === null) cand = K.buckets()[h];
+    else if (cand.length){
+      var nxt = new Uint32Array(cand.length), n = 0;
+      for (var q=0;q<cand.length;q++){ var s2 = K.step(cand[q]); if (K.out(s2) === h) nxt[n++] = s2; }
+      cand = nxt.subarray(0, n);
+    }
+    sizes.push(cand.length);
+  }
+  var lock = -1; for (var z=0;z<sizes.length;z++) if (sizes[z] === 1){ lock = z + 1; break; }
+  return { sizes: sizes, preds: preds, lock: lock, final: cand };
+}
+
+/* order-3 back-off n-gram predictor (knows nothing about the generator) */
+function ngram(hops, seed){
+  var rnd = Rng(seed || 777), tabs = [new Map(), new Map(), new Map(), new Map()], preds = [], hist = [];
+  for (var i=0;i<hops.length;i++){
+    var p = -1;
+    for (var k=Math.min(3, hist.length); k>=0 && p < 0; k--){
+      var key = hist.slice(hist.length-k).join(','), arr = tabs[k].get(key);
+      if (arr){ var m = Math.max.apply(null, arr), ties = []; for (var c=0;c<M;c++) if (arr[c] === m) ties.push(c); if (m > 0) p = ties[rnd() % ties.length]; }
+    }
+    if (p < 0) p = rnd() % M;
+    preds.push(p);
+    var h = hops[i];
+    for (var k2=0; k2<=Math.min(3, hist.length); k2++){
+      var key2 = hist.slice(hist.length-k2).join(','), a2 = tabs[k2].get(key2);
+      if (!a2){ a2 = new Uint16Array(M); tabs[k2].set(key2, a2); }
+      a2[h]++;
+    }
+    hist.push(h);
+  }
+  return preds;
+}
+function accuracy(preds, hops, from, to){
+  var hit = 0, n = 0; to = to === undefined ? hops.length : to;
+  for (var i=from;i<to;i++){ n++; if (preds[i] === hops[i]) hit++; }
+  return n ? hit / n : 0;
+}
+
+/* ------------------------------------------------------------------ statistics */
+function binomUpperTail(k, n, p){ /* P(X >= k) */
+  if (k <= 0) return 1;
+  var logq = Math.log(1-p), logp = Math.log(p), lgn = lgam(n+1), tail = 0;
+  for (var j=k;j<=n;j++) tail += Math.exp(lgn - lgam(j+1) - lgam(n-j+1) + j*logp + (n-j)*logq);
+  return Math.min(1, tail);
+}
+function lgam(x){ /* Lanczos log-gamma */
+  var g = [676.5203681218851,-1259.1392167224028,771.32342877765313,-176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];
+  if (x < 0.5) return Math.log(Math.PI/Math.sin(Math.PI*x)) - lgam(1-x);
+  x -= 1; var a = 0.99999999999980993, t = x + 7.5;
+  for (var i=0;i<8;i++) a += g[i]/(x+i+1);
+  return 0.5*Math.log(2*Math.PI) + (x+0.5)*Math.log(t) - t + Math.log(a);
+}
+function wilson(k, n){
+  if (!n) return [0,1];
+  var z = 1.96, p = k/n, d = 1 + z*z/n, c = (p + z*z/(2*n))/d, h = z*Math.sqrt(p*(1-p)/n + z*z/(4*n*n))/d;
+  return [Math.max(0,c-h), Math.min(1,c+h)];
+}
+function fmtP(p){ return p < 0.0001 ? '< 0.0001' : p.toFixed(p < 0.01 ? 4 : 3); }
+function verdictFor(k, n){
+  if (n < 20) return { text:'Too few guesses to say anything. Keep clicking.', cls:'' };
+  var p = binomUpperTail(k, n, 1/M);
+  if (p < 0.001) return { text:'Far above chance (p ' + (p<0.0001?'':'= ') + fmtP(p) + '). You have found a pattern.', cls:'good', p:p };
+  if (p < 0.05) return { text:'Above chance (p = ' + fmtP(p) + '). Could still be luck; keep going.', cls:'warn', p:p };
+  return { text:'Indistinguishable from pure guessing (p = ' + fmtP(p) + ').', cls:'', p:p };
+}
+
+/* ------------------------------------------------------------------ sessions */
+var sessions = {}, cur = 'lfsr';
+function newSession(mode){
+  var s = { mode: mode, secret: newSecret(mode), t: PRELUDE, picks: [], hist: [], attack: null };
+  s.sched = makeSchedule(mode, s.secret);
+  for (var i=0;i<PRELUDE;i++) s.hist.push({ actual: s.sched.hop(i), guess: null });
+  sessions[mode] = s; return s;
+}
+function S(){ return sessions[cur]; }
+function counts(s){ var n = 0, k = 0; s.hist.forEach(function(h){ if (h.guess !== null){ n++; if (h.guess === h.actual) k++; } }); return { n:n, k:k }; }
+
+/* ------------------------------------------------------------------ drawing */
+function cssVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+function drawWaterfall(canvas, hist, colors, opts){
+  opts = opts || {};
+  var dpr = opts.dpr || window.devicePixelRatio || 1, cssW = opts.w || canvas.clientWidth || 600, cssH = opts.h || 190;
+  canvas.width = Math.round(cssW*dpr); canvas.height = Math.round(cssH*dpr);
+  var c = canvas.getContext('2d'); c.setTransform(dpr,0,0,dpr,0,0);
+  c.fillStyle = colors.bg; c.fillRect(0,0,cssW,cssH);
+  var cols = opts.cols || COLS, padL = 22, padR = 4, padT = 4, padB = 4;
+  var cw = (cssW - padL - padR) / cols, rh = (cssH - padT - padB) / M;
+  c.font = '9px system-ui,sans-serif'; c.fillStyle = colors.muted; c.textAlign = 'right'; c.textBaseline = 'middle';
+  for (var r=0;r<M;r++){
+    if (r % 2 === 0 || M < 8) c.fillText(String(r+1), padL-4, padT + r*rh + rh/2);
+    c.fillStyle = (r%2) ? 'rgba(128,128,128,0.06)' : 'rgba(128,128,128,0.0)';
+    c.fillRect(padL, padT + r*rh, cssW-padL-padR, rh);
+    c.fillStyle = colors.muted;
+  }
+  var start = Math.max(0, hist.length - cols);
+  for (var i=start;i<hist.length;i++){
+    var h = hist[i], x = padL + (i-start)*cw, y = padT + h.actual*rh;
+    var hit = h.guess !== null && h.guess === h.actual;
+    c.fillStyle = hit ? colors.good : colors.hop;
+    c.fillRect(x+1, y+1, Math.max(1,cw-2), Math.max(1,rh-2));
+    if (h.guess !== null && !hit){
+      c.strokeStyle = colors.bad; c.lineWidth = 1.6;
+      var gy = padT + h.guess*rh;
+      c.strokeRect(x+1.5, gy+1.5, Math.max(1,cw-3), Math.max(1,rh-3));
+    }
+  }
+}
+function colorsNow(){ return { bg: cssVar('--cell'), muted: cssVar('--muted'), good: cssVar('--good'), hop: cssVar('--hop'), bad: cssVar('--bad') }; }
+
+/* ------------------------------------------------------------------ UI build + update */
+function buildTabs(){
+  var el = $('tabs'); el.innerHTML = '';
+  MODE_ORDER.forEach(function(m){
+    var b = document.createElement('button');
+    b.className = 'tab'; b.type = 'button'; b.dataset.mode = m;
+    b.innerHTML = '<b>' + MODES[m].title + '</b><small>' + MODES[m].small + '</small>';
+    b.addEventListener('click', function(){ cur = m; renderAll(); });
+    el.appendChild(b);
+  });
+}
+function buildGrid(){
+  var g = $('grid'); g.innerHTML = '';
+  for (var c=0;c<M;c++){
+    var b = document.createElement('button');
+    b.className = 'ch'; b.type = 'button'; b.textContent = String(c+1);
+    b.setAttribute('aria-label', 'Predict channel ' + (c+1)); b.dataset.ch = c;
+    b.addEventListener('click', (function(ch){ return function(){ pick(ch); }; })(c));
+    g.appendChild(b);
+  }
+}
+var flashTimer = null;
+function pick(guess){
+  var s = S(), actual = s.sched.hop(s.t);
+  s.hist.push({ actual: actual, guess: guess }); s.t++;
+  s.attack = null;   // stale after more hops
+  var ok = guess === actual;
+  renderAll();
+  var cells = $('grid').children;
+  cells[actual].classList.add(ok ? 'hit' : 'hop');
+  if (!ok) cells[guess].classList.add('miss-pick');
+  var fb = $('feedback');
+  fb.className = 'feedback ' + (ok ? 'good' : 'bad');
+  fb.textContent = ok ? 'Hit! The hop was channel ' + (actual+1) + '.' : 'Miss. You said ' + (guess+1) + ', the hop was ' + (actual+1) + '.';
+  clearTimeout(flashTimer);
+  flashTimer = setTimeout(function(){ for (var i=0;i<cells.length;i++) cells[i].classList.remove('hit','hop','miss-pick'); }, 900);
+}
+function renderAll(){
+  var s = S();
+  Array.prototype.forEach.call($('tabs').children, function(b){ b.setAttribute('aria-pressed', b.dataset.mode === cur ? 'true' : 'false'); });
+  $('modeNote').textContent = MODES[cur].note;
+  $('slotInfo').textContent = 'Predicting hop #' + (s.t + 1);
+  $('obsInfo').textContent = s.t + ' hops observed (' + PRELUDE + ' free)';
+  var fb = $('feedback'); if (!s.hist.some(function(h){ return h.guess !== null; })){ fb.className = 'feedback'; fb.textContent = 'Pick the channel you think comes next.'; }
+  var c = counts(s), acc = c.n ? c.k / c.n : null;
+  $('sN').textContent = c.n; $('sHit').textContent = c.k; $('sAcc').textContent = acc === null ? '-' : (100*acc).toFixed(1) + ' %';
+  var ci = wilson(c.k, c.n), cap = 0.40, pos = function(v){ return Math.min(100, 100*v/cap) + '%'; };
+  $('barChance').style.left = pos(1/M);
+  $('barYou').style.left = acc === null ? '0%' : pos(acc); $('barYou').style.visibility = acc === null ? 'hidden' : 'visible';
+  $('barCI').style.left = pos(ci[0]); $('barCI').style.width = (Math.min(100, 100*ci[1]/cap) - Math.min(100, 100*ci[0]/cap)) + '%';
+  $('barCI').style.visibility = c.n ? 'visible' : 'hidden';
+  var v = verdictFor(c.k, c.n); $('verdict').className = v.cls; $('verdict').textContent = v.text;
+  $('pinfo').textContent = c.n ? 'Expected by luck: ' + (c.n/M).toFixed(1) + ' correct. 95 % interval for your accuracy: ' + (100*ci[0]).toFixed(1) + ' to ' + (100*ci[1]).toFixed(1) + ' %.' : '';
+  drawWaterfall($('wf'), s.hist, colorsNow());
+  var chips = $('chips'); chips.innerHTML = '';
+  s.hist.slice(-24).forEach(function(h){
+    var sp = document.createElement('span'); sp.className = 'chip' + (h.guess === null ? ' free' : (h.guess === h.actual ? ' hit' : ' miss'));
+    sp.textContent = String(h.actual + 1); chips.appendChild(sp);
+  });
+  var cells = $('grid').children; for (var i=0;i<cells.length;i++) cells[i].classList.remove('hit','hop','miss-pick');
+  renderReveal();
+}
+
+/* ------------------------------------------------------------------ the attack panel */
+var MANY = {};   // per mode: last 'other secrets' result
+function allHops(s, n){ var a = []; for (var i=0;i<n;i++) a.push(s.sched.hop(i)); return a; }
+
+function runAttack(){
+  var s = S(), N = 2000, hops = allHops(s, Math.max(N, s.t));
+  var A = { n: hops.length, t: s.t };
+  if (s.mode === 'keyed'){
+    A.lfsr = eliminate('lfsr', hops.slice(0, 40)); A.lcg = eliminate('lcg', hops.slice(0, 40));
+    A.ngramPreds = ngram(hops);
+    A.ngramAcc = accuracy(A.ngramPreds, hops, 200);
+    A.player = playerWindow(A.ngramPreds, s);
+  } else {
+    A.br = eliminate(s.mode, hops);
+    A.brAcc = accuracy(A.br.preds, hops, A.br.lock > 0 ? A.br.lock : 200);
+    A.brAccAll = accuracy(A.br.preds, hops, 200);
+    A.ngramPreds = ngram(hops);
+    A.ngramAcc = accuracy(A.ngramPreds, hops, 200);
+    A.player = playerWindow(A.br.preds, s);
+  }
+  s.attack = A;
+}
+function playerWindow(preds, s){   /* breaker predictions on exactly the slots the player guessed */
+  var n = 0, hit = 0;
+  for (var i=PRELUDE;i<s.t;i++){ n++; if (preds[i] === s.sched.hop(i)) hit++; }
+  return { n:n, hit:hit };
+}
+function chartSVG(series, maxHops, ymaxLog){
+  var W = 640, H = 200, L = 46, R = 10, T = 10, B = 28, pw = W-L-R, ph = H-T-B;
+  var x = function(i){ return L + pw * i / maxHops; };
+  var y = function(v){ return v <= 0 ? T+ph+10 : T + ph - ph * Math.log10(Math.max(v,1)) / ymaxLog; };
+  var o = '<svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="Candidate secrets remaining after each observed hop (log scale)">';
+  for (var g=0; g<=ymaxLog; g+= (ymaxLog>10?4:2)){
+    var yy = T+ph-ph*g/ymaxLog; o += '<line x1="'+L+'" x2="'+(W-R)+'" y1="'+yy+'" y2="'+yy+'" stroke="'+cssVar('--line')+'"/><text x="'+(L-6)+'" y="'+(yy+3)+'" text-anchor="end">10^'+g+'</text>';
+  }
+  for (var i=0;i<=maxHops;i+= (maxHops>12?2:1)) o += '<text x="'+x(i)+'" y="'+(H-10)+'" text-anchor="middle">'+i+'</text>';
+  o += '<text x="'+(L+pw/2)+'" y="'+(H)+'" text-anchor="middle">hops observed</text>';
+  series.forEach(function(se, si){
+    var pts = se.vals.map(function(v,i){ return x(i)+','+y(v); }).join(' ');
+    o += '<polyline fill="none" stroke="'+se.color+'" stroke-width="2.4" '+(se.dash?'stroke-dasharray="5 4" ':'')+'points="'+pts+'"/>';
+    se.vals.forEach(function(v,i){ o += '<circle cx="'+x(i)+'" cy="'+y(v)+'" r="2.8" fill="'+se.color+'"/>'; });
+    var last = se.vals.length-1;
+    o += '<text x="'+Math.min(x(last)+6, W-R-130)+'" y="'+(y(se.vals[last])-8-si*14)+'" style="fill:'+se.color+'">'+se.label+'</text>';
+  });
+  return o + '</svg>';
+}
+function pct(v){ return (100*v).toFixed(1) + ' %'; }
+function renderReveal(){
+  var s = S(), panel = $('reveal');
+  if (!s.attack){ panel.hidden = true; return; }
+  panel.hidden = false;
+  var A = s.attack, T = $('revTable'), lead = $('revLead'), chart = $('revChart'), many = $('manyOut');
+  many.textContent = MANY[s.mode] || '';
+  var good = cssVar('--good'), bad = cssVar('--bad'), accent = cssVar('--accent'), warn = cssVar('--warn');
+  if (s.mode !== 'keyed'){
+    var br = A.br, name = s.mode === 'lfsr' ? 'LFSR-16' : 'LCG-24', space = KIND[s.mode].space;
+    $('revTitle').textContent = 'The attack: the weak schedule falls';
+    if (br.lock > 0){
+      lead.innerHTML = 'The breaker knows the ' + name + ' algorithm, not your secret. It started with <b>' + space.toLocaleString() + '</b> candidate secrets and threw away every one inconsistent with the hops seen. After only <b class="bad">' + br.lock + ' hops</b> exactly one candidate was left, and from then on it predicted every hop: <b class="bad">' + pct(A.brAcc) + '</b> accuracy afterwards. You had ' + s.t + ' hops available.';
+    } else lead.textContent = 'The breaker did not isolate a single secret (unexpected).';
+    var sz = br.sizes.slice(0, Math.max(8, Math.min(16, (br.lock>0?br.lock:10) + 3)));
+    chart.innerHTML = chartSVG([{ vals:[space].concat(sz), color:bad, label:'candidates left' }], sz.length, Math.ceil(Math.log10(space)));
+    var pl = A.player;
+    T.innerHTML = '<tr><th>Attacker</th><th class="num">Accuracy</th><th>Knows</th></tr>' +
+      '<tr><td>Candidate-elimination breaker</td><td class="num"><b>' + pct(A.brAcc) + '</b></td><td>algorithm, not the secret</td></tr>' +
+      '<tr><td>n-gram predictor (hops 200-' + A.n + ')</td><td class="num">' + pct(A.ngramAcc) + '</td><td>nothing, learns from the stream</td></tr>' +
+      '<tr><td>You (' + pl.n + ' predictions)</td><td class="num">' + (pl.n ? pct(counts(s).k / counts(s).n) : '-') + '</td><td>your eyes</td></tr>' +
+      '<tr><td>Pure guessing</td><td class="num">7.7 %</td><td>nothing</td></tr>';
+    $('revCaveat').textContent = s.mode === 'lfsr' ?
+      'The n-gram predictor does better than chance on LFSR-16 because x mod 13 of a shifting register leaves only about four possible successors for each channel. The breaker is simply exact.' :
+      'The LCG state is only 24 bits, so the first hop already removes 12/13 of 16.7 million candidates and a handful more finish the job.';
+  } else {
+    $('revTitle').textContent = 'The attack: the keyed schedule holds';
+    lead.innerHTML = 'The key has <b>128 bits</b>, so there are 2<sup>128</sup> candidate keys (about 3.4 x 10<sup>38</sup>) and nothing to enumerate. The cheap attacks fail: assuming the stream is an LFSR-16 or LCG-24 is refuted within a few hops, and an n-gram predictor stays at chance over ' + A.n + ' hops (<b>' + pct(A.ngramAcc) + '</b> vs 7.7 %).';
+    var l1 = A.lfsr.sizes.slice(0, 10), l2 = A.lcg.sizes.slice(0, 10);
+    chart.innerHTML = chartSVG([{ vals:[65535].concat(l1), color:bad, label:'LFSR-16 hypothesis' }, { vals:[16777216].concat(l2), color:warn, label:'LCG-24 hypothesis', dash:true }], 10, 8);
+    var z1 = A.lfsr.sizes.findIndex(function(v){ return v === 0; }) + 1, z2 = A.lcg.sizes.findIndex(function(v){ return v === 0; }) + 1;
+    var pl2 = A.player;
+    T.innerHTML = '<tr><th>Attacker</th><th class="num">Result</th><th>Knows</th></tr>' +
+      '<tr><td>LFSR-16 breaker</td><td class="num">refuted after ' + z1 + ' hops</td><td>wrong algorithm</td></tr>' +
+      '<tr><td>LCG-24 breaker</td><td class="num">refuted after ' + z2 + ' hops</td><td>wrong algorithm</td></tr>' +
+      '<tr><td>n-gram predictor</td><td class="num">' + pct(A.ngramAcc) + '</td><td>nothing</td></tr>' +
+      '<tr><td>You (' + pl2.n + ' predictions)</td><td class="num">' + (pl2.n ? pct(counts(s).k / counts(s).n) : '-') + '</td><td>your eyes</td></tr>' +
+      '<tr><td>Pure guessing</td><td class="num">7.7 %</td><td>nothing</td></tr>';
+    $('revCaveat').textContent = 'Honest limit: about 35 hops carry enough information to pin down a 128-bit key in principle (35 x 3.7 bits), but finding it means searching 2^128 keys. "Never falls" means no attack in this page, or any known cheap attack, gets traction; it is not a proof.';
+  }
+}
+
+/* "Try 40 other secrets": how many hops does the breaker need on fresh secrets? */
+function manySecrets(){
+  var mode = cur, trials = mode === 'lfsr' ? 200 : 40, locks = [];
+  if (mode === 'keyed'){ MANY[mode] = 'Nothing to measure: the breaker never locks on a keyed schedule.'; renderReveal(); return; }
+  $('manyOut').textContent = 'Running...';
+  setTimeout(function(){
+    for (var k=0;k<trials;k++){
+      var sch = makeSchedule(mode, newSecret(mode)), hops = []; for (var i=0;i<40;i++) hops.push(sch.hop(i));
+      var r = eliminate(mode, hops); locks.push(r.lock > 0 ? r.lock : 999);
+    }
+    locks.sort(function(a,b){ return a-b; });
+    MANY[mode] = trials + ' random secrets: locked on after a median of ' + locks[Math.floor(trials/2)] + ' hops (min ' + locks[0] + ', max ' + locks[trials-1] + ').';
+    renderReveal();
+  }, 30);
+}
+
+/* ------------------------------------------------------------------ share card */
+function shareCard(){
+  var s = S(), c = counts(s), W = 1200, H = 630, cv = document.createElement('canvas');
+  cv.width = W; cv.height = H; var g = cv.getContext('2d');
+  var grad = g.createLinearGradient(0,0,W,H); grad.addColorStop(0,'#0e1a2e'); grad.addColorStop(1,'#14284a');
+  g.fillStyle = grad; g.fillRect(0,0,W,H);
+  g.fillStyle = '#e8edf3'; g.font = '700 54px system-ui,Helvetica,Arial,sans-serif'; g.textBaseline = 'alphabetic'; g.textAlign = 'left';
+  g.fillText('Break the Hop', 60, 100);
+  g.fillStyle = '#9fb3cf'; g.font = '28px system-ui,Helvetica,Arial,sans-serif';
+  g.fillText('Schedule: ' + MODES[s.mode].title + '  (' + MODES[s.mode].secretBits + ' secret)', 60, 150);
+  var acc = c.n ? c.k / c.n : null, v = verdictFor(c.k, c.n), ci = wilson(c.k, c.n);
+  g.fillStyle = '#ffffff'; g.font = '700 120px system-ui,Helvetica,Arial,sans-serif';
+  g.fillText(acc === null ? '-' : (100*acc).toFixed(1) + ' %', 60, 290);
+  g.fillStyle = '#9fb3cf'; g.font = '30px system-ui,Helvetica,Arial,sans-serif';
+  g.fillText('my accuracy: ' + c.k + ' of ' + c.n + ' predictions   |   pure chance = 7.7 %', 60, 340);
+  g.fillText(c.n ? '95 % interval ' + (100*ci[0]).toFixed(1) + ' to ' + (100*ci[1]).toFixed(1) + ' %' : 'no predictions yet', 60, 380);
+  g.fillStyle = (v.cls === 'good' ? '#45c277' : (v.cls === 'warn' ? '#f0b04a' : '#cfd8e6')); g.font = '600 30px system-ui,Helvetica,Arial,sans-serif';
+  g.fillText(v.text.length > 78 ? v.text.slice(0, 76) + '...' : v.text, 60, 428);
+  var A = s.attack, line = 'Attack not run yet: press "Reveal the attack"';
+  if (A){
+    if (s.mode === 'keyed') line = 'Breaker vs keyed schedule: n-gram ' + pct(A.ngramAcc) + ' (chance 7.7 %). It never falls.';
+    else line = 'Breaker locked on after ' + A.br.lock + ' hops, then ' + pct(A.brAcc) + ' accurate. The weak schedule falls.';
+  }
+  g.fillStyle = (A && s.mode !== 'keyed') ? '#ff7a80' : (A ? '#45c277' : '#9fb3cf'); g.font = '600 30px system-ui,Helvetica,Arial,sans-serif';
+  var fs = 30; while (fs > 16){ g.font = '600 ' + fs + 'px system-ui,Helvetica,Arial,sans-serif'; if (g.measureText(line).width <= 1080) break; fs--; }
+  g.fillText(line, 60, 470);
+  var wf = document.createElement('canvas');
+  drawWaterfall(wf, s.hist, { bg:'#0b1424', muted:'#7f93b0', good:'#45c277', hop:'#6ea0ff', bad:'#ff7a80' }, { w: 1080, h: 96, dpr: 1, cols: 60 });
+  g.drawImage(wf, 60, 495, 1080, 96);
+  g.fillStyle = '#7f93b0'; g.font = '20px system-ui,Helvetica,Arial,sans-serif';
+  g.fillText('Simulation only, offline, no radio. Part of HopBench.', 60, 612);
+  var url = cv.toDataURL('image/png');
+  $('dlgImg').src = url; $('dlgDl').href = url;
+  var dlg = $('dlg'); if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open','');
+  return url;
+}
+
+/* ------------------------------------------------------------------ wiring */
+function init(){
+  buildTabs(); buildGrid();
+  MODE_ORDER.forEach(newSession);
+  $('btnReveal').addEventListener('click', function(){ runAttack(); renderReveal(); $('reveal').scrollIntoView({ behavior:'smooth', block:'nearest' }); });
+  $('btnReset').addEventListener('click', function(){ newSession(cur); MANY[cur] = ''; renderAll(); });
+  $('btnShare').addEventListener('click', shareCard);
+  $('btnMany').addEventListener('click', manySecrets);
+  $('dlgClose').addEventListener('click', function(){ $('dlg').close ? $('dlg').close() : $('dlg').removeAttribute('open'); });
+  window.addEventListener('resize', function(){ drawWaterfall($('wf'), S().hist, colorsNow()); });
+  if (window.matchMedia) try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', renderAll); } catch(e){}
+  renderAll();
+}
+/* test hooks */
+window.HB = { lfsrStep:lfsrStep, lcgStep:lcgStep, sipSlot:function(k,t){ return sipSlot(k,t).toString(); }, sipHop:sipHop, makeSchedule:makeSchedule,
+  eliminate:eliminate, ngram:ngram, accuracy:accuracy, binomUpperTail:binomUpperTail, wilson:wilson, verdictFor:verdictFor,
+  state:function(){ return { cur:cur, sessions:sessions }; }, setSecret:function(mode, secret){ var s = newSession(mode); s.secret = secret; s.sched = makeSchedule(mode, secret);
+    s.hist = []; for (var i=0;i<PRELUDE;i++) s.hist.push({ actual:s.sched.hop(i), guess:null }); cur = mode; renderAll(); }, pick:pick, runAttack:runAttack, shareCard:shareCard, MODES:MODES };
+init();
+})();
+</script>
+</body>
+</html>
